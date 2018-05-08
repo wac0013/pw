@@ -1,9 +1,6 @@
 <template>
 <div id="principal"> 
-  <carregar-pagina/>
-  <div>
-    <router-link to="/sys/dashboard"><i class="sign in icon"></i>Entrar</router-link>
-  </div> 
+  <!--<carregar-pagina/> -->
   <div>
     <router-view></router-view>
   </div> 
@@ -20,6 +17,9 @@
     data () {
       return {
       }
+    },
+    created() {
+      this.$root
     }
   };
 </script>
