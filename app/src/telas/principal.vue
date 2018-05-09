@@ -1,10 +1,10 @@
 <template>
-<div id="principal"> 
+<sui-container text-align="left" id="principal"> 
   <!--<carregar-pagina/> -->
-  <div>
+  <sui-grid >
     <router-view></router-view>
-  </div> 
-</div>
+  </sui-grid>
+</sui-container>
 </template>
 <script>
   import login from './login';
@@ -19,7 +19,7 @@
       }
     },
     created() {
-      this.$root
+      this.$root._router.push('/sys/login');
     }
   };
 </script>
