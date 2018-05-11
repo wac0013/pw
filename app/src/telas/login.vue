@@ -1,20 +1,20 @@
 <template>
-  <sui-card class="centered raised blue" >
+  <sui-card class="centered raised blue separador">
     <sui-card-content>
       <sui-card-header >Bem Vindo</sui-card-header>
       <sui-card-meta>Projeto Programação Web</sui-card-meta>
       <sui-card-description >
-        <sui-form v-on:submit.prevent="logar">
+        <sui-form v-on:submit.prevent="logar" ref="form">
           <sui-form-field>
             <label>Nome de usuário</label>
-            <sui-input placeholder="nome@email.com" icon="user" v-model="usuario.login"/>
+            <sui-input placeholder="nome@email.com" icon="user" icon-position="left" required v-model="usuario.login"/>
           </sui-form-field>
           <div class="ui right aligned">
             <router-link to="/sys/recuperar-senha" tabindex="-1">Esqueceu sua senha</router-link>
           </div>
           <sui-form-field>
             <label>Senha</label>
-            <sui-input placeholder="********" icon="lock" v-model="usuario.senha"/>
+            <sui-input type="password" icon="lock" icon-position="left" required v-model="usuario.senha"/>
           </sui-form-field>
           <div class="g-recaptcha centered" data-sitekey="6Ldf4TAUAAAAAFCwBf00intpyw8FyZse_PoNUbCm"></div>
             <div>
@@ -43,13 +43,23 @@ export default {
   },
   methods: {
     logar: function (){
-      this.carregando = true;
+      var self = this;
+      $(self.$refs["form"].$el).addClass('loading');
 
       setTimeout(function () {
-        this.carregando = false;
-        this.$parent;
+        $(self.$refs["form"].$el).removeClass('loading');
+        if (self.usuario.login != '' && self.usuario.senha != '') {
+          self.$root.$router.push('/sys/dashboard');
+        }
       }, 3000);
     }
   }
 }
 </script>
+
+<style>
+  .ui.card.separador{
+    margin-top: 3em
+  }
+</style>
+

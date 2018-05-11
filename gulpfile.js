@@ -2,10 +2,7 @@ const gulp    = require('gulp'),
   path        = require('path'),
   gutil       = require('gulp-util'),
   del         = require('del'),
-  webpack     = require('webpack'),
   config      = require('./config'),
-  CopyWebpackPlugin = require('copy-webpack-plugin'),
-  webpackConfig     = Object.create(require('./webpack.config.js')),
   WebpackDevServer  = require('webpack-dev-server')
 
 //
