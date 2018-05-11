@@ -1,30 +1,31 @@
 <template>
-<div class="ui centered grid">
-  <div class="ui blue raised card">
-    <div class="content">
-      <div class="header">
-        Login
-      </div>
-    </div>
-    <div class="content">
-      <div class="description">
-        <formulario nome="teste"  :onSubmit="logar">
-          <edit nome="login" label="Nome de usuário" tipo="text" :obrigatorio="true" v-model="usuario.login"/>
+  <sui-card class="centered raised blue separador">
+    <sui-card-content>
+      <sui-card-header >Bem Vindo</sui-card-header>
+      <sui-card-meta>Projeto Programação Web</sui-card-meta>
+      <sui-card-description >
+        <sui-form v-on:submit.prevent="logar" ref="form">
+          <sui-form-field>
+            <label>Nome de usuário</label>
+            <sui-input placeholder="nome@email.com" icon="user" icon-position="left" required v-model="usuario.login"/>
+          </sui-form-field>
           <div class="ui right aligned">
             <router-link to="/sys/recuperar-senha" tabindex="-1">Esqueceu sua senha</router-link>
           </div>
-          <edit-senha nome="senha" label="Senha" :obrigatorio="true" v-model="usuario.senha"/>
-           <div class="g-recaptcha centered" data-sitekey="6Ldf4TAUAAAAAFCwBf00intpyw8FyZse_PoNUbCm"></div>
+          <sui-form-field>
+            <label>Senha</label>
+            <sui-input type="password" icon="lock" icon-position="left" required v-model="usuario.senha"/>
+          </sui-form-field>
+          <div class="g-recaptcha centered" data-sitekey="6Ldf4TAUAAAAAFCwBf00intpyw8FyZse_PoNUbCm"></div>
             <div>
               <button id="logar" class="fluid ui primary button" type="submit">Login
                 <i v-if="carregando" class="spinner loading icon right aligned"></i>
               </button>
             </div>
-        </formulario>
-      </div>
-    </div>
-  </div>
-</div>
+        </sui-form>
+      </sui-card-description>
+    </sui-card-content>
+  </sui-card>
 </template>
 
 <script>
@@ -32,6 +33,33 @@ import * as util from '@/utils/lib'
 
 export default {
   data(){
+    return {
+      usuario:{
+        login: '',
+        senha: ''
+      },
+      carregando: false
+    }
   },
+  methods: {
+    logar: function (){
+      var self = this;
+      $(self.$refs["form"].$el).addClass('loading');
+
+      setTimeout(function () {
+        $(self.$refs["form"].$el).removeClass('loading');
+        if (self.usuario.login != '' && self.usuario.senha != '') {
+          self.$root.$router.push('/sys/dashboard');
+        }
+      }, 3000);
+    }
+  }
 }
 </script>
+
+<style>
+  .ui.card.separador{
+    margin-top: 3em
+  }
+</style>
+
