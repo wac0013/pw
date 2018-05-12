@@ -1,6 +1,6 @@
 <template>
 <sui-container text-align="left" id="principal"> 
-  <!--<carregar-pagina/> -->
+  <carregar-pagina/>
   <sui-grid >
     <router-view></router-view>
   </sui-grid>
