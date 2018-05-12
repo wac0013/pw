@@ -2,11 +2,11 @@
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu">
   </sui-sidebar>
-  <sui-menu fixed="left" inverted vertical class="mobile tablet or lower hidden">
-    <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')"></sui-menu-item>
+  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
+    <sui-menu-item>Usuário</sui-menu-item>
   </sui-menu>
   <sui-menu fixed="top" inverted pointing>
-    <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="mobile only"></sui-menu-item>
+    <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
     <sui-menu-menu position="right">
       <sui-menu-item right>
         <sui-input inverted icon="search" placeholder="Pesquisar..." />
@@ -18,11 +18,7 @@
 
 <script>
   export default {
-    methods: {
-      abrirSideBar: function(){
-
-      }
-    }
+    
   };
 </script>
 
