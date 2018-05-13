@@ -3,6 +3,7 @@ import Vue from 'vue'
 import login from '@/telas/login'
 import dashboard from '@/telas/dashboard'
 import index from '@/site/index'
+import cadastro from '@/telas/cadastro'
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/sys/login',
       name: 'Login',
       component: login
+    },
+    {
+      path: '/sys/cadastro',
+      name: 'Cadastro',
+      component: cadastro
     },
     {
       path: '/sys/dashboard',
