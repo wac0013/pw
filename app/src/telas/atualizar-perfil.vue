@@ -2,23 +2,23 @@
   <sui-form>
     <sui-form-field>
       <label>Nome</label>
-      <input placeholder="Nome" >
+         <input placeholder="Nome" >
     </sui-form-field>
     <sui-form-field>
       <label>Bairro</label>
-      <input placeholder="Bairro" >
+         <input placeholder="Bairro" >
     </sui-form-field>
     <sui-form-field>
       <label>Cidade</label>
-      <input placeholder="Cidade" >
+         <input placeholder="Cidade" >
     </sui-form-field>
     <sui-form-field>
       <label>Estado</label>
-      <input placeholder="Estado" >
+         <input placeholder="Estado" >
     </sui-form-field>
     <sui-form-field>
       <label>Telefone</label>
-      <input placeholder="(##)9####-####" >
+         <input placeholder="(##)9####-####" >
     </sui-form-field>
     <sui-form-field>
       <label>Detalhes importantes</label>
@@ -30,6 +30,6 @@
 
 <script>
 export default {
-  name: 'FormExample',
+  name: 'atualizar-perfil',
 };
 </script>

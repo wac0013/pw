@@ -2,7 +2,7 @@ import Router from 'vue-router'
 import Vue from 'vue'
 import login from '@/telas/login'
 import dashboard from '@/telas/dashboard'
-import atualizarPerfil from '@/telas/atualizarPerfil'
+import atualizarPerfil from '@/telas/atualizar-perfil'
 import index from '@/site/index'
 
 Vue.use(Router);
