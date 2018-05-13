@@ -1,9 +1,15 @@
 <template>
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu">
+    <sui-menu-item>Usuário</sui-menu-item>
+    <sui-menu-item><router-link to="/sys/cadastro">Cadastro</router-link></sui-menu-item>
+    <sui-menu-item>Sobre<sui-icon name="info circle"/></sui-menu-item>
+    <sui-menu-item><router-link to="/sys/login">Sair<sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
   </sui-sidebar>
   <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
     <sui-menu-item>Usuário</sui-menu-item>
+    <sui-menu-item><router-link >Cadastro</router-link></sui-menu-item>
+    <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
   </sui-menu>
   <sui-menu fixed="top" inverted pointing>
     <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
@@ -13,12 +19,19 @@
       </sui-menu-item>
     </sui-menu-menu>
   </sui-menu>
+  <sui-modal v-model="modal_sobre">
+
+  </sui-modal>
 </div>
 </template>
 
 <script>
   export default {
-    
+    data(){
+      return {
+        modal_sobre: false
+      }
+    }
   };
 </script>
 
