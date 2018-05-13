@@ -4,7 +4,7 @@
     <div></div>
   </div>
 
-  <!-- <ul id="barra-lateral" class="side-nav fixed">
+  <ul id="barra-lateral" class="side-nav fixed">
     <li>
       <div class="user-view hide-on-med-only">
         <div class="background w3-grayscale-min">
@@ -39,7 +39,7 @@
     <li><a class="waves-effect" v-on:click="sair()"><i class="material-icons">keyboard_tab</i><span class="hide-on-med-only">Sair</span></a></li>
     <li></li>
     <li></li>
-  </ul> -->
+  </ul>
 </template>
 
 <script>
