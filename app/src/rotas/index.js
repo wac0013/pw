@@ -12,11 +12,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'atualizarPerfil',
-      component: atualizarPerfil
-    },
-    {
-      path: '/',
       name: 'Index',
       component: index
     },
@@ -29,6 +24,11 @@ export default new Router({
       path: '/sys/dashboard',
       name: 'Dashboard',
       component: dashboard
+    },
+    {
+      path: '/sys/atualizar-perfil',
+      name: 'atualizarPerfil',
+      component: atualizarPerfil
     }
   ]
 })
