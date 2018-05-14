@@ -3,6 +3,8 @@ import Vue from 'vue'
 import login from '@/telas/login'
 import dashboard from '@/telas/dashboard'
 import index from '@/site/index'
+import atualizarPerfil from '@/telas/atualizarPerfil'
+import feed from '@/telas/feed'
 
 Vue.use(Router);
 
@@ -22,7 +24,19 @@ export default new Router({
     {
       path: '/sys/dashboard',
       name: 'Dashboard',
-      component: dashboard
+      component: dashboard,
+      children: [
+        {
+          path: '/atualizar-perfil',
+          name: 'atualizarPerfil',
+          component: atualizarPerfil
+        },
+        {
+          path: '/feed',
+          name: 'feed',
+          component: feed
+        }
+      ]
     }
   ]
 })
