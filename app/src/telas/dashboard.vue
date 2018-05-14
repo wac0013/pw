@@ -1,15 +1,14 @@
 <template>
 <div id="dashboard">
-  <sui-sidebar animation="push" class="inverted vertical menu">
+  <sui-sidebar animation="push" class="inverted vertical menu" id="sidebar">
     <sui-menu-item>Usuário</sui-menu-item>
-    <router-link to="/feed"><sui-menu-item>Início<sui-icon name="home"/></sui-menu-item></router-link>
-    <router-link to="/atualizar-perfil"><sui-menu-item>Cadastro</sui-menu-item></router-link>
-    <sui-menu-item link @click="showModalSobre">Sobre<sui-icon name="info circle"/></sui-menu-item>
-    <router-link to="/sys/login"><sui-menu-item link>Sair<sui-icon name="sign out alternate icon"/></sui-menu-item></router-link>
+    <router-link to="/feed"><sui-menu-item @click="hideSideBar" link>Início<sui-icon name="home"/></sui-menu-item></router-link>
+    <router-link to="/atualizar-perfil"><sui-menu-item @click="hideSideBar" link>Cadastro<sui-icon name="edit"/></sui-menu-item></router-link>
+    <sui-menu-item link @click="hideSideBar(); showModalSobre()">Sobre<sui-icon name="info circle"/></sui-menu-item>
+    <router-link to="/sys/login"><sui-menu-item @click="hideSideBar" link>Sair<sui-icon name="sign out alternate icon"/></sui-menu-item></router-link>
   </sui-sidebar>
   <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
     <sui-menu-item>Usuário</sui-menu-item>
-    <sui-menu-item><router-link >Cadastro</router-link></sui-menu-item>
     <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
   </sui-menu>
   <sui-menu fixed="top" inverted pointing>
@@ -20,45 +19,71 @@
       </sui-menu-item>
     </sui-menu-menu>
   </sui-menu>
+  
+  <sui-container class="container" id="principal">
+    <carregar-pagina/>
+    <router-view></router-view>
+  </sui-container>
 
-  <router-view></router-view>
-
-  <sui-modal v-model="modal_sobre">
-    <sui-modal-header>Informações</sui-modal-header>
-      <sui-modal-content image>
-        <sui-image wrapped size="medium" src="static/images/avatar/large/rachel.png" />
+  <sui-modal v-model="modal_sobre" size="tiny" aligned="top" id="modal" closeIcon>
+    <sui-modal-header>Informações sobre o sistema</sui-modal-header>
+      <sui-modal-content>
         <sui-modal-description>
-          <sui-header>Default Profile Image</sui-header>
-          <p>We've found the following gravatar image associated with your e-mail address.</p>
-          <p>Is it okay to use this photo?</p>
+          <p><b>Versão</b> 1.0.0</p>
+          <p>
+            <b>Integrantes:</b>
+            <ul>
+              <li><a href="https://github.com/wac0013"><sui-image avatar wrapped shape="circular" size="mini" src="/img/wellington.jpg"/></a>Wellington Alves</li>
+              <li><a href="https://github.com/paulohg6"><sui-image avatar wrapped shape="circular" size="mini" src="/img/paulo.png"/></a>Paulo</li>
+              <li><a href="https://github.com/kogzera"><sui-image avatar wrapped shape="circular" size="mini" src="/img/joao.jpg"/></a>João Victor</li>
+              <li><a href="https://github.com/valchaqui"><sui-image avatar wrapped shape="circular" size="mini" src="/img/karoline.jpg"/></a>Karoline Walczak</li>
+            </ul>
+          </p>
+          <p>
+            <b>Tecnologias:</b>
+            <sui-image-group size="mini">
+              <a href="https://vuejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/Vue.png"/></a>
+              <a href="https://semantic-ui.com/"><sui-image spaced="left" wrapped size="mini" src="/img/semantic.png"/></a>
+              <a href="https://semantic-ui-vue.github.io"><sui-image spaced="left" wrapped size="mini" src="/img/semantic-ui-vue.png"/></a>
+              <a href="https://webpack.js.org"><sui-image spaced="left" wrapped size="mini" src="/img/webpack.png"/></a>
+              <a href="https://gulpjs.com"><sui-image spaced="left" wrapped size="mini" src="/img/gulp.png"/></a>
+              <a href="https://www.w3schools.com/html/html5_intro.asp"><sui-image spaced="left" wrapped size="mini" src="/img/html.png"/></a>
+              <a href="https://www.w3schools.com/css/"><sui-image spaced="left" wrapped size="mini" src="/img/css.png"/></a>
+              <a href="https://www.javascript.com/"><sui-image spaced="left" wrapped size="mini" src="/img/js.png"/></a>
+              <a href="https://nodejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/nodejs.png"/></a>
+            </sui-image-group>
+        </p>
         </sui-modal-description>
       </sui-modal-content>
-      <sui-modal-actions>
-        <sui-button floated="right" positive @click.native="toggle">
-          OK
-        </sui-button>
-      </sui-modal-actions>
   </sui-modal>
 </div>
 </template>
 
 <script>
-  $('.ui.sidebar').sidebar({context: $('#dashboard')});
+  import carregar_pagina from '@/components/carregar_pagina'
+  
   export default {
+    components: carregar_pagina,
     data(){
       return {
         modal_sobre: false
       }
-    }, 
+    },
     methods: {
       showModalSobre(){
         this.modal_sobre = !this.modal_sobre;
+      },
+      hideSideBar(){
+        $('#sidebar').sidebar('hide')
       }
     }
   };
 </script>
 
 <style lang="scss">
+#modal{
+  top: 30% 
+}
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
