@@ -2,9 +2,9 @@
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu">
     <sui-menu-item>Usuário</sui-menu-item>
-    <sui-menu-item><router-link to="/sys/cadastro">Cadastro</router-link></sui-menu-item>
-    <sui-menu-item>Sobre<sui-icon name="info circle"/></sui-menu-item>
-    <sui-menu-item><router-link to="/sys/login">Sair<sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
+    <router-link to="/sys/cadastro"><sui-menu-item>Cadastro</sui-menu-item></router-link>
+    <sui-menu-item link @click="showModalSobre">Sobre<sui-icon name="info circle"/></sui-menu-item>
+    <router-link to="/sys/login"><sui-menu-item link>Sair<sui-icon name="sign out alternate icon"/></sui-menu-item></router-link>
   </sui-sidebar>
   <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
     <sui-menu-item>Usuário</sui-menu-item>
@@ -19,17 +19,23 @@
       </sui-menu-item>
     </sui-menu-menu>
   </sui-menu>
-  <sui-modal v-model="modal_sobre">
-
+  <sui-modal>
+    Teste de modal
   </sui-modal>
 </div>
 </template>
 
 <script>
+  $('.ui.sidebar').sidebar({context: $('#dashboard')});
   export default {
     data(){
       return {
         modal_sobre: false
+      }
+    }, 
+    methods: {
+      showModalSobre(){
+        this.modal_sobre = true;
       }
     }
   };
