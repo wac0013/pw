@@ -11,7 +11,7 @@
             <sui-input placeholder="User name" autocomplete="off" icon="user" icon-position="left" required v-model="usuario.login"/>
           </sui-form-field>
           <div class="ui right aligned">
-            <router-link to="/sys/recuperar-senha" tabindex="-1">Esqueceu sua senha</router-link>
+            <router-link to="/sys/atualizar-perfil" tabindex="-1">Esqueceu sua senha</router-link>
           </div>
           <sui-form-field>
             <label>Senha</label>

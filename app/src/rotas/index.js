@@ -49,6 +49,11 @@ export default new Router({
           component: casoDetalhado
         }
       ]
-    }
+    },
+    {
+      path: '/sys/atualizar-perfil',
+      name: 'atualizarPerfil',
+      component: atualizarPerfil
+    },
   ]
 })

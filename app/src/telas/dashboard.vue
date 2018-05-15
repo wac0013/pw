@@ -15,7 +15,7 @@
       <sui-menu-header>Cadastro</sui-menu-header>
       <router-link to="/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
-          Cadastrar ocorrências<sui-icon name="edit"/>
+          Ocorrências<sui-icon name="edit"/>
         </sui-menu-item>
       </router-link>
     </sui-menu-item>
@@ -29,7 +29,7 @@
     </router-link>
   </sui-sidebar>
 
-  <sui-menu fixed="left" inverted vertical attached class="tablet or lower hidden" >
+  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden" id="menu_lateral" >
     <sui-menu-item link>
       <router-link to="/atualizar-perfil">
         <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
@@ -44,7 +44,7 @@
       <sui-menu-header>Cadastro</sui-menu-header>
       <router-link to="/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
-          Cadastrar ocorrências<sui-icon name="edit"/>
+          Ocorrências<sui-icon name="edit"/>
         </sui-menu-item>
       </router-link>
     </sui-menu-item>
@@ -58,9 +58,9 @@
     </router-link>
   </sui-menu>
 
-  <sui-menu fixed="top" inverted secundary>
+  <sui-menu fixed="top" inverted secundary id="top-menu">
     <div class="ui container">
-        <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
+        <sui-menu-item icon=bars link position="left" onclick="$('#sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
         <sui-menu-item link>
           Objetos
         </sui-menu-item>
@@ -125,6 +125,18 @@
 </template>
 
 <script>
+  $(window).resize(function() {
+    if ($(window).width() > 992) {
+      $("#conteudo").css("margin-left",$("menu_lateral").width());
+      $("#top-menu").css("margin-left",$("menu_lateral").width());
+    }    
+  });
+
+  if ($(window).width() > 992) {
+    $("#conteudo").css("margin-left",$("menu_lateral").width());
+    $("#top-menu").css("margin-left",$("menu_lateral").width());
+  }
+
   export default {
     data(){
       return {

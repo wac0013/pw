@@ -1,8 +1,8 @@
 <template>
 <sui-grid>
-  <sui-card-group itemsPerRow=3>
+  <sui-card-group>
     <sui-card v-for="ocorrencia in this.$root.ocorrencias" :key="ocorrencia.categoria">      
-      <sui-image src="/img/sem-imagem.png" v-if="ocorrencia['imagens'][0] == undefined"/>
+      <sui-image src="/img/sem-imagem.png" v-if="ocorrencia['imagens'][0] == undefined" @click="detalhar(ocorrencia)"/>
       <sui-image :src="ocorrencia['imagens'][0]" v-else />
       <sui-card-content>
         <sui-card-header>{{ocorrencia['categoria']}}</sui-card-header>
@@ -27,6 +27,11 @@ export default {
         return ['veículos', 'animais', 'pessoas', 'objetos', 'todos'].indexOf(v) !== -1
       },
       default: 'todos'
+    }
+  },
+  methods:{
+    detalhar(ocorrencia){
+      
     }
   }/*,
   computed: {
