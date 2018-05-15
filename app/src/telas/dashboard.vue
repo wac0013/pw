@@ -21,8 +21,7 @@
     </sui-menu-menu>
   </sui-menu>
   
-  <sui-container class="container" id="principal">
-    <carregar-pagina/>
+  <sui-container id="conteudo"> 
     <router-view></router-view>
   </sui-container>
 
@@ -43,11 +42,11 @@
           <p>
             <b>Tecnologias:</b>
             <sui-image-group size="mini">
+              <a href="https://gulpjs.com"><sui-image spaced="left" wrapped size="mini" src="/img/gulp.png"/></a>
               <a href="https://vuejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/Vue.png"/></a>
               <a href="https://semantic-ui.com/"><sui-image spaced="left" wrapped size="mini" src="/img/semantic.png"/></a>
               <a href="https://semantic-ui-vue.github.io"><sui-image spaced="left" wrapped size="mini" src="/img/semantic-ui-vue.png"/></a>
               <a href="https://webpack.js.org"><sui-image spaced="left" wrapped size="mini" src="/img/webpack.png"/></a>
-              <a href="https://gulpjs.com"><sui-image spaced="left" wrapped size="mini" src="/img/gulp.png"/></a>
               <a href="https://www.w3schools.com/html/html5_intro.asp"><sui-image spaced="left" wrapped size="mini" src="/img/html.png"/></a>
               <a href="https://www.w3schools.com/css/"><sui-image spaced="left" wrapped size="mini" src="/img/css.png"/></a>
               <a href="https://www.javascript.com/"><sui-image spaced="left" wrapped size="mini" src="/img/js.png"/></a>
@@ -61,14 +60,14 @@
 </template>
 
 <script>
-  import carregar_pagina from '@/components/carregar_pagina'
-  
   export default {
-    components: carregar_pagina,
     data(){
       return {
         modal_sobre: false
       }
+    },
+    mounted(){
+      $('#conteudo').css("margin-top", "10%");
     },
     methods: {
       showModalSobre(){
@@ -82,8 +81,8 @@
 </script>
 
 <style lang="scss">
-#modal{
-  top: 30% 
+.ui.modal{
+  top: 20% !important
 }
 
 @media only screen and (max-width: 767px) {

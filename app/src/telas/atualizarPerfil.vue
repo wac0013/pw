@@ -31,5 +31,8 @@
 <script>
 export default {
   name: 'atualizar-perfil',
+  mounted() {
+    $(this.$el).css("margin-top", "3em");
+  }
 };
 </script>
