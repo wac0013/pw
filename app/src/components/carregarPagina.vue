@@ -8,9 +8,11 @@
 
 <script>
 export default {
-  name: "loaderPage"
+  name: "carregar-pagina",
+  mounted() {
+    setTimeout(finalizaCarregamentoPagina, 3000);
+  }
 };
-
 
 const finalizaCarregamentoPagina = function() {
   $('body').addClass('loaded');

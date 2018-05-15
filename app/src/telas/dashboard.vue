@@ -1,28 +1,129 @@
 <template>
 <div id="dashboard">
-  <sui-sidebar animation="push" class="inverted vertical menu">
+  <sui-sidebar animation="push" class="inverted vertical menu" id="sidebar">
+    <sui-menu-item>
+      <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+    </sui-menu-item>
+    <router-link to="/feed">
+      <sui-menu-item @click="hideSideBar" link>
+        Início<sui-icon name="home"/>
+      </sui-menu-item>
+    </router-link>
+    <router-link to="/atualizar-perfil">
+      <sui-menu-item @click="hideSideBar" link>
+        Cadastro<sui-icon name="edit"/>
+      </sui-menu-item>
+    </router-link>
+    <router-link to="/ocorrencias">
+      <sui-menu-item @click="hideSideBar" link>
+        Cadastrar ocorrências<sui-icon name="help"/>
+      </sui-menu-item>
+    </router-link>
+    <sui-menu-item link @click="hideSideBar(); showModalSobre()">
+      Sobre<sui-icon name="info circle"/>
+    </sui-menu-item>
+    <router-link to="/sys/login">
+      <sui-menu-item @click="hideSideBar" link>
+        Sair
+      <sui-icon name="sign out alternate icon"/></sui-menu-item>
+    </router-link>
   </sui-sidebar>
   <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
     <sui-menu-item>Usuário</sui-menu-item>
+    <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
   </sui-menu>
-  <sui-menu fixed="top" inverted pointing>
-    <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
-    <sui-menu-menu position="right">
-      <sui-menu-item right>
+  <sui-menu fixed="top" inverted secundary>
+    <div class="ui container">
+        <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
+        <sui-menu-item link>
+          Objetos
+        </sui-menu-item>
+        <sui-menu-item link>
+          Veículos
+        </sui-menu-item>
+        <sui-menu-item link>
+          Pessoas
+        </sui-menu-item>
+        <sui-menu-item link>
+          Animais
+        </sui-menu-item>
+      <sui-menu-menu position="right" class="mobile hidden">
+        <sui-menu-item>
+          <sui-input inverted icon="search" placeholder="Pesquisar..." />
+        </sui-menu-item>
+      </sui-menu-menu>
+    </div>
+    <div class="ui container mobile only">
+      <sui-menu-item>
         <sui-input inverted icon="search" placeholder="Pesquisar..." />
       </sui-menu-item>
-    </sui-menu-menu>
+    </div>
   </sui-menu>
+  
+  <sui-container id="conteudo"> 
+    <router-view></router-view>
+  </sui-container>
+
+  <sui-modal v-model="modal_sobre" size="tiny" aligned="top" id="modal" closeIcon>
+    <sui-modal-header>Informações sobre o sistema</sui-modal-header>
+      <sui-modal-content>
+        <sui-modal-description>
+          <p><b>Versão</b> 1.0.0</p>
+          <p>
+            <b>Integrantes:</b>
+            <ul>
+              <li><a href="https://github.com/wac0013"><sui-image avatar wrapped shape="circular" size="mini" src="/img/wellington.jpg"/></a>Wellington Alves</li>
+              <li><a href="https://github.com/paulohg6"><sui-image avatar wrapped shape="circular" size="mini" src="/img/paulo.png"/></a>Paulo</li>
+              <li><a href="https://github.com/kogzera"><sui-image avatar wrapped shape="circular" size="mini" src="/img/joao.jpg"/></a>João Victor</li>
+              <li><a href="https://github.com/valchaqui"><sui-image avatar wrapped shape="circular" size="mini" src="/img/karoline.jpg"/></a>Karoline Walczak</li>
+            </ul>
+          </p>
+          <p>
+            <b>Tecnologias:</b>
+            <sui-image-group size="mini">
+              <a href="https://gulpjs.com"><sui-image spaced="left" wrapped size="mini" src="/img/gulp.png"/></a>
+              <a href="https://vuejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/Vue.png"/></a>
+              <a href="https://semantic-ui.com/"><sui-image spaced="left" wrapped size="mini" src="/img/semantic.png"/></a>
+              <a href="https://semantic-ui-vue.github.io"><sui-image spaced="left" wrapped size="mini" src="/img/semantic-ui-vue.png"/></a>
+              <a href="https://webpack.js.org"><sui-image spaced="left" wrapped size="mini" src="/img/webpack.png"/></a>
+              <a href="https://www.w3schools.com/html/html5_intro.asp"><sui-image spaced="left" wrapped size="mini" src="/img/html.png"/></a>
+              <a href="https://www.w3schools.com/css/"><sui-image spaced="left" wrapped size="mini" src="/img/css.png"/></a>
+              <a href="https://www.javascript.com/"><sui-image spaced="left" wrapped size="mini" src="/img/js.png"/></a>
+              <a href="https://nodejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/nodejs.png"/></a>
+            </sui-image-group>
+        </p>
+        </sui-modal-description>
+      </sui-modal-content>
+  </sui-modal>
 </div>
 </template>
 
 <script>
   export default {
-    
+    data(){
+      return {
+        modal_sobre: false
+      }
+    },
+    mounted(){
+      $('#conteudo').css("margin-top", "5em");
+    },
+    methods: {
+      showModalSobre(){
+        this.modal_sobre = !this.modal_sobre;
+      },
+      hideSideBar(){
+        $('#sidebar').sidebar('hide')
+      }
+    }
   };
 </script>
 
 <style lang="scss">
+.ui.modal{
+  top: 20% !important
+}
+
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
@@ -56,6 +157,9 @@
   [class*="or lower hidden"]:not(.tablet):not(.mobile) {
     display: none !important;
   }
+  #conteudo,.ui.menu {
+    margin-left: 80%
+  }
 }
 
 /* Large Monitor */
@@ -68,6 +172,9 @@
   [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
     display: none !important;
   }
+  #conteudo,.ui.menu {
+    margin-left: 80%
+  }
 }
 
 /* Widescreen Monitor */
@@ -79,6 +186,9 @@
   [class*="widescreen hidden"],
   [class*="widescreen or lower hidden"] {
     display: none !important;
+  }
+  #conteudo,.ui.menu {
+    margin-left: 80%
   }
 }
 </style>
