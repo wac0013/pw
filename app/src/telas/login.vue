@@ -55,6 +55,10 @@ export default {
         $(self.$refs["form"].$el).removeClass('loading');
         if (self.usuario.login != '' && self.usuario.senha != '') {
           self.$root.$router.push('/feed');
+          self.$root.usuario.login = self.usuario.login;
+          self.$root.usuario.senha = self.usuario.senha;
+          self.$root.usuario.nome = 'Dead Pool';
+          self.$root.usuario.descricao = 'Zoeiro';
         }
       }, 1000);
     }

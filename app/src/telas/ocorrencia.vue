@@ -28,7 +28,6 @@
             radio
             value="2"
             v-model="ofereceRecompensa"
-            
           />
         </sui-form-field>
     </sui-form-fields>
