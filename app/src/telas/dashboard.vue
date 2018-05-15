@@ -1,24 +1,24 @@
 <template>
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu" id="sidebar">
-    <sui-menu-item>
-      <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+    <sui-menu-item link>
+      <router-link to="/atualizar-perfil">
+        <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+      </router-link>
     </sui-menu-item>
     <router-link to="/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
-      </sui-menu-item>
+      </sui-menu-item>    
     </router-link>
-    <router-link to="/atualizar-perfil">
-      <sui-menu-item @click="hideSideBar" link>
-        Cadastro<sui-icon name="edit"/>
-      </sui-menu-item>
-    </router-link>
-    <router-link to="/ocorrencias">
-      <sui-menu-item @click="hideSideBar" link>
-        Cadastrar ocorrências<sui-icon name="help"/>
-      </sui-menu-item>
-    </router-link>
+    <sui-menu-item @click="hideSideBar">
+      <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/ocorrencias">
+        <sui-menu-item @click="hideSideBar" link>
+          Cadastrar ocorrências<sui-icon name="edit"/>
+        </sui-menu-item>
+      </router-link>
+    </sui-menu-item>
     <sui-menu-item link @click="hideSideBar(); showModalSobre()">
       Sobre<sui-icon name="info circle"/>
     </sui-menu-item>
@@ -28,10 +28,36 @@
       <sui-icon name="sign out alternate icon"/></sui-menu-item>
     </router-link>
   </sui-sidebar>
-  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
-    <sui-menu-item>Usuário</sui-menu-item>
-    <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
+
+  <sui-menu fixed="left" inverted vertical attached class="tablet or lower hidden" >
+    <sui-menu-item link>
+      <router-link to="/atualizar-perfil">
+        <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+      </router-link>
+    </sui-menu-item>
+    <router-link to="/feed">
+      <sui-menu-item @click="hideSideBar" link>
+        Início<sui-icon name="home"/>
+      </sui-menu-item>    
+    </router-link>
+    <sui-menu-item @click="hideSideBar">
+      <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/ocorrencias">
+        <sui-menu-item @click="hideSideBar" link>
+          Cadastrar ocorrências<sui-icon name="edit"/>
+        </sui-menu-item>
+      </router-link>
+    </sui-menu-item>
+    <sui-menu-item link @click="hideSideBar(); showModalSobre()">
+      Sobre<sui-icon name="info circle"/>
+    </sui-menu-item>
+    <router-link to="/sys/login">
+      <sui-menu-item @click="hideSideBar" link>
+        Sair
+      <sui-icon name="sign out alternate icon"/></sui-menu-item>
+    </router-link>
   </sui-menu>
+
   <sui-menu fixed="top" inverted secundary>
     <div class="ui container">
         <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>

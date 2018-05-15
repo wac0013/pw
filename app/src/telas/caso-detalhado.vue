@@ -1,4 +1,5 @@
 <template lang="html">
+<div>
   <div is="sui-container">
     <sui-image src="static/img/profiles/masculino_vazio.jpg" size="standard" />
     <sui-image src="static/img/profiles/feminino_vazio.jpg" size="standard" />
@@ -17,7 +18,7 @@
       <label>Descrição do caso</label>
       <input placeholder = "Detalhes do caso." >
     </sui-form-field>
-    
+  </sui-form>
     <div>
     <sui-card>
       <sui-image src="static/img/profiles/masculino_vazio.jpg" />
@@ -31,11 +32,11 @@
         10 Casos registrados</sui-card-content>
     </sui-card>
   </div>
-    
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'caso-detalhado',
+  name: 'caso-detalhado'
 };
 </script>

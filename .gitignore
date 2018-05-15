@@ -8,6 +8,7 @@ npm-debug.log*
 
 #Editores 
 .vscode/
+.idea/
 
 #Arquivos compilados
 dist/
