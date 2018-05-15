@@ -28,7 +28,7 @@ export default {
       },
       default: 'todos'
     }
-  }/*,
+  },
   computed: {
     Filtrados: function () {
       return this.$root.ocorrencias.filter(function (o) {
@@ -39,7 +39,7 @@ export default {
         }
       })
     }
-  }*/
+  }
 }
 </script>
 

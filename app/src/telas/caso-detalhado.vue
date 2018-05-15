@@ -3,7 +3,7 @@
     <sui-image src="static/img/profiles/masculino_vazio.jpg" size="standard" />
     <sui-image src="static/img/profiles/feminino_vazio.jpg" size="standard" />
     <sui-image src="static/img/controller.png" size="standard" />
-  </div>
+  
   <sui-form>
     <sui-form-field>
       <label>Data de publicação: </label>
@@ -17,6 +17,7 @@
       <label>Descrição do caso</label>
       <input placeholder = "Detalhes do caso." >
     </sui-form-field>
+  </sui-form>
     
     <div>
     <sui-card>
@@ -31,7 +32,7 @@
         10 Casos registrados</sui-card-content>
     </sui-card>
   </div>
-    
+  </div>  
 </template>
 
 <script>

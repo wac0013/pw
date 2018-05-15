@@ -1,24 +1,29 @@
 <template>
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu" id="sidebar">
-    <sui-menu-item>
-      <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+    <sui-menu-item link>
+      <router-link to="/atualizar-perfil">
+        <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+      </router-link>
     </sui-menu-item>
     <router-link to="/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
-      </sui-menu-item>
+      </sui-menu-item>    
     </router-link>
-    <router-link to="/atualizar-perfil">
-      <sui-menu-item @click="hideSideBar" link>
-        Cadastro<sui-icon name="edit"/>
-      </sui-menu-item>
-    </router-link>
-    <router-link to="/ocorrencias">
-      <sui-menu-item @click="hideSideBar" link>
-        Cadastrar ocorrências<sui-icon name="help"/>
-      </sui-menu-item>
-    </router-link>
+    <sui-menu-item @click="hideSideBar">
+      <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/cadastro">
+        <sui-menu-item @click="hideSideBar" link>
+          Usuário<sui-icon name="user"/>
+        </sui-menu-item>
+      </router-link>
+      <router-link to="/ocorrencias">
+        <sui-menu-item @click="hideSideBar" link>
+          Ocorrências<sui-icon name="edit"/>
+        </sui-menu-item>
+      </router-link>
+    </sui-menu-item>
     <sui-menu-item link @click="hideSideBar(); showModalSobre()">
       Sobre<sui-icon name="info circle"/>
     </sui-menu-item>
@@ -28,13 +33,44 @@
       <sui-icon name="sign out alternate icon"/></sui-menu-item>
     </router-link>
   </sui-sidebar>
-  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
-    <sui-menu-item>Usuário</sui-menu-item>
-    <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
+
+  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden" id="menu_lateral" >
+    <sui-menu-item link>
+      <router-link to="/atualizar-perfil">
+        <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
+      </router-link>
+    </sui-menu-item>
+    <router-link to="/feed">
+      <sui-menu-item @click="hideSideBar" link>
+        Início<sui-icon name="home"/>
+      </sui-menu-item>    
+    </router-link>
+    <sui-menu-item @click="hideSideBar">
+      <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/cadastro">
+        <sui-menu-item @click="hideSideBar" link>
+          Usuário<sui-icon name="user"/>
+        </sui-menu-item>
+      </router-link>
+      <router-link to="/ocorrencias">
+        <sui-menu-item @click="hideSideBar" link>
+          Ocorrências<sui-icon name="edit"/>
+        </sui-menu-item>
+      </router-link>
+    </sui-menu-item>
+    <sui-menu-item link @click="hideSideBar(); showModalSobre()">
+      Sobre<sui-icon name="info circle"/>
+    </sui-menu-item>
+    <router-link to="/sys/login">
+      <sui-menu-item @click="hideSideBar" link>
+        Sair
+      <sui-icon name="sign out alternate icon"/></sui-menu-item>
+    </router-link>
   </sui-menu>
-  <sui-menu fixed="top" inverted secundary>
+
+  <sui-menu fixed="top" inverted secundary id="top-menu">
     <div class="ui container">
-        <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
+        <sui-menu-item icon=bars link position="left" onclick="$('#sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
         <sui-menu-item link>
           Objetos
         </sui-menu-item>
@@ -99,6 +135,16 @@
 </template>
 
 <script>
+  $(window).resize(function() {
+    if ($(window).width() > 992) {
+      $("#conteudo").css("margin-left",$("menu_lateral").width());
+      $("#top-menu").css("margin-left",$("menu_lateral").width());
+    }    
+  });
+  if ($(window).width() > 992) {
+    $("#conteudo").css("margin-left",$("menu_lateral").width());
+    $("#top-menu").css("margin-left",$("menu_lateral").width());
+  }
   export default {
     data(){
       return {
@@ -123,7 +169,6 @@
 .ui.modal{
   top: 20% !important
 }
-
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
@@ -134,7 +179,6 @@
     display: none !important;
   }
 }
-
 /* Tablet / iPad Portrait */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   [class*="mobile only"]:not(.tablet),
@@ -146,7 +190,6 @@
     display: none !important;
   }
 }
-
 /* Computer / Desktop / iPad Landscape */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   [class*="mobile only"]:not(.computer),
@@ -161,7 +204,6 @@
     margin-left: 80%
   }
 }
-
 /* Large Monitor */
 @media only screen and (min-width: 1200px) and (max-width: 1919px) {
   [class*="mobile only"]:not([class*="large screen"]),
@@ -176,7 +218,6 @@
     margin-left: 80%
   }
 }
-
 /* Widescreen Monitor */
 @media only screen and (min-width: 1920px) {
   [class*="mobile only"]:not([class*="widescreen"]),

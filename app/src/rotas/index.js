@@ -5,6 +5,7 @@ import dashboard from '@/telas/dashboard'
 import index from '@/site/index'
 import ocorrencia from '@/telas/ocorrencia'
 import atualizarPerfil from '@/telas/atualizarPerfil'
+import cadastro from '@/telas/cadastro'
 import casoDetalhado from '@/telas/caso-detalhado'
 import feed from '@/telas/feed'
 
@@ -47,6 +48,11 @@ export default new Router({
           path: '/sys/caso-detalhado',
           name: 'CasoDetalhado',
           component: casoDetalhado
+        },
+        {
+          path: '/cadastro',
+          name: 'cadastro',
+          component: cadastro
         }
       ]
     }
