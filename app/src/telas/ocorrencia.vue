@@ -18,19 +18,26 @@
         <sui-checkbox
           label="Sim"
           radio
-          value="1"
-          v-model="value"
+          value="true"
+          v-model="ofereceRecompensa"
         />
         </sui-form-field>
         <sui-form-field>
           <sui-checkbox
             label="Não"
             radio
-            value="2"
-            v-model="value"
+            value="false"
+            v-model="ofereceRecompensa"
+            v-on:click="ofereceRecompensa=false"
           />
         </sui-form-field>
     </sui-form-fields>
+
+    <sui-form-field v-if="ofereceRecompensa">
+      <label>Valor da recompensa:</label>
+      <input type="number" placeholder="100,00">
+    </sui-form-field>
+
     <sui-form-field>
       <label>Telefone para contato</label>
       <input type="number" placeholder="(99) 99999-9999" >
@@ -74,7 +81,8 @@
     data: function() {
       return { 
         value: '1',
-        enviarImagem: false
+        enviarImagem: false,
+        ofereceRecompensa: false
       }
     }
   };
