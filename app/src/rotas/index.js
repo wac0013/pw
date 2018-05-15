@@ -3,6 +3,7 @@ import Vue from 'vue'
 import login from '@/telas/login'
 import dashboard from '@/telas/dashboard'
 import index from '@/site/index'
+import ocorrencia from '@/telas/ocorrencia'
 import atualizarPerfil from '@/telas/atualizarPerfil'
 import feed from '@/telas/feed'
 
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: index
+    },
+    {
+      path: '/ocorrencia',
+      name: 'Ocorrencias',
+      component: ocorrencia
     },
     {
       path: '/sys/login',

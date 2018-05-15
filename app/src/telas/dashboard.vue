@@ -16,10 +16,14 @@
     <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
     <sui-menu-menu position="right">
       <sui-menu-item right>
-        <sui-input inverted icon="search" placeholder="Pesquisar..." />
+        <sui-input inverted icon="search" placeholder="Pesquisar...a" />
       </sui-menu-item>
     </sui-menu-menu>
   </sui-menu>
+
+  <ocorrencia></ocorrencia>
+
+  <h1>oioioi</h1>
 
   <router-view></router-view>
 
@@ -43,8 +47,14 @@
 </template>
 
 <script>
+  import Ocorrencia from '@/telas/ocorrencia'
+
   $('.ui.sidebar').sidebar({context: $('#dashboard')});
   export default {
+    components: {
+      ocorrencia: Ocorrencia
+    },
+
     data(){
       return {
         modal_sobre: false
