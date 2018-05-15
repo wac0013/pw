@@ -5,6 +5,7 @@
     "descricao":"Perdi meu carro no estacionamento do INF. Carro muito sentimental",
     "recompensa": 1000000,
     "telefone_contato":"(62) 99999-9999",
+    "perdido": true,
     "imagens":[
       "/img/ocorrencias/herbie/download.jpg",
       "/img/ocorrencias/herbie/download2.jpg",
@@ -13,32 +14,40 @@
   },
   {
     "categoria":"pessoas",
-    "local":"",
-    "descricao":"",
+    "local":"Goiânia",
+    "descricao":"Prefeito da cidade de Goiânia, desaparecido desde as últimas eleições",
     "recompensa": 0,
     "telefone_contato":"",
+    "perdido": true,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      "/img/ocorrencias/herbie/download.jpg",
+      "/img/ocorrencias/herbie/download1.jpg",
+      "/img/ocorrencias/herbie/download2.jpg"
     ]
   },
   {
     "categoria":"animais",
-    "local":"",
-    "descricao":"",
-    "recompensa": 0,
+    "local":"Goiânia",
+    "descricao":"Cachorro da raça Pug da cor preta, atende pelo nome de Bob",
+    "recompensa": 500,
     "telefone_contato":"",
+    "perdido": true,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      "/img/ocorrencias/pug/download.jpg",
+      "/img/ocorrencias/pug/download1.jpg",
+      "/img/ocorrencias/pug/download2.jpg",
+      "/img/ocorrencias/pug/download3.jpg"
     ]
   },
   {
     "categoria":"objetos",
-    "local":"",
-    "descricao":"",
+    "local":"Brasília",
+    "descricao":"Carteira com todo dinheiro do povo",
     "recompensa": 0,
     "telefone_contato":"",
+    "perdido": true,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      "/img/ocorrencias/carteira/download.jpg"
     ]
   },
   {
@@ -47,6 +56,7 @@
     "descricao":"Perdi o brinquedo que o papai deu",
     "recompensa": 0,
     "telefone_contato":"(61) 88888-8888",
+    "perdido": true,
     "imagens":[
       "/img/ocorrencias/camaro/download.jpg",
       "/img/ocorrencias/camaro/download1.jpg",
@@ -56,72 +66,80 @@
   },
   {
     "categoria":"animal",
-    "local":"",
-    "descricao":"",
+    "local":"Austalia",
+    "descricao":"Perry o Ornitorrinco, animal de estimação",
     "recompensa": 0,
     "telefone_contato":"",
+    "perdido": true,
     "imagens":[
-
+      "/img/ocorrencias/ornitorrinco/download.jpg",
+      "/img/ocorrencias/ornitorrinco/download1.jpg"
     ]
   },
   {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
+    "categoria":"objeto",
+    "local":"UFG",
+    "descricao":"Cartão de crédito - nome FULANO DE TAL",
     "recompensa": 0,
-    "telefone_contato":"",
-    "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
-    ]
-  },
-  {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
-    "recompensa": 0,
-    "telefone_contato":"",
-    "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
-    ]
-  },
-  {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
-    "recompensa": 0,
-    "telefone_contato":"",
+    "telefone_contato":"(62) 5555-5555",
+    "perdido": true,
     "imagens":[
       
     ]
   },
   {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
+    "categoria":"objeto",
+    "local":"Brasilia",
+    "descricao":"Carteira encontrada",
     "recompensa": 0,
-    "telefone_contato":"",
+    "telefone_contato":"(62) 1711-7171",
+    "perdido": false,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      "/img/ocorrencias/carteira/download1.jpg"
     ]
   },
   {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
-    "recompensa": 0,
+    "categoria":"veiculo",
+    "local":"Rio de Janeiro",
+    "descricao":"Gol G6, 4 portas, preto",
+    "recompensa": 5000,
     "telefone_contato":"",
+    "perdido": true,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      
     ]
   },
   {
-    "categoria":"",
-    "local":"",
-    "descricao":"",
+    "categoria":"objeto",
+    "local":"Goiania",
+    "descricao":"Celular nokia 3320 encontrado próximo a UFG",
     "recompensa": 0,
     "telefone_contato":"",
+    "perdido": false,
     "imagens":[
-      "/img/ocorrencias/herbie/download.jpg"
+      "/img/ocorrencias/celular/download.jpg"
+    ]
+  },
+  {
+    "categoria":"pessoa",
+    "local":"Onde Judas perdeu as botas",
+    "descricao":"Sogra de alguém foi encontrada",
+    "recompensa": 0,
+    "telefone_contato":"",
+    "perdido": false,
+    "imagens":[
+      "/img/ocorrencias/sogra/download.jpg"
+    ]
+  },
+  {
+    "categoria":"objeto",
+    "local":"Instituto de matemática",
+    "descricao":"Calculadora HP 50G",
+    "recompensa": 0,
+    "telefone_contato":"",
+    "perdido": true,
+    "imagens":[
+
     ]
   }
 ]

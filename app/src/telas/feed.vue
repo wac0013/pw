@@ -1,7 +1,7 @@
 <template>
 <sui-grid>
   <sui-card-group itemsPerRow=3>
-    <sui-card v-for="ocorrencia in Filtrados" :key="ocorrencia">      
+    <sui-card v-for="ocorrencia in this.$root.ocorrencias" :key="ocorrencia.categoria">      
       <sui-image src="/img/sem-imagem.png" v-if="ocorrencia['imagens'][0] == undefined"/>
       <sui-image :src="ocorrencia['imagens'][0]" v-else />
       <sui-card-content>
@@ -20,19 +20,26 @@
 <script>
 export default {
   name: 'feed',
-  data() {
-    return ocorrencias
-  },
-  created() {
-    this.ocorrencias = this.$root.ocorrencias;
-  },
+  props: {
+    filtro: {
+      type: String,
+      validator(v) {
+        return ['veículos', 'animais', 'pessoas', 'objetos', 'todos'].indexOf(v) !== -1
+      },
+      default: 'todos'
+    }
+  }/*,
   computed: {
     Filtrados: function () {
-      return this.ocorrencias.filter(function (o) {
-        return o
+      return this.$root.ocorrencias.filter(function (o) {
+        if (this.filtro != 'todos') {
+          return o['categoria'] == filtro;
+        } else {
+          return o;
+        }
       })
     }
-  }
+  }*/
 }
 </script>
 

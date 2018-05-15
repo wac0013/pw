@@ -33,26 +33,31 @@
     <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
   </sui-menu>
   <sui-menu fixed="top" inverted secundary>
-    <sui-menu-menu position="left">
-      <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
+    <div class="ui container">
+        <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
+        <sui-menu-item link>
+          Objetos
+        </sui-menu-item>
+        <sui-menu-item link>
+          Veículos
+        </sui-menu-item>
+        <sui-menu-item link>
+          Pessoas
+        </sui-menu-item>
+        <sui-menu-item link>
+          Animais
+        </sui-menu-item>
+      <sui-menu-menu position="right" class="mobile hidden">
+        <sui-menu-item>
+          <sui-input inverted icon="search" placeholder="Pesquisar..." />
+        </sui-menu-item>
+      </sui-menu-menu>
+    </div>
+    <div class="ui container mobile only">
       <sui-menu-item>
-        Objetos
-      </sui-menu-item>
-      <sui-menu-item>
-        Veículos
-      </sui-menu-item>
-      <sui-menu-item>
-        Pessoas
-      </sui-menu-item>
-      <sui-menu-item>
-        Animais
-      </sui-menu-item>
-    </sui-menu-menu>
-    <sui-menu-menu position="right" class="stackable">
-      <sui-menu-item right>
         <sui-input inverted icon="search" placeholder="Pesquisar..." />
       </sui-menu-item>
-    </sui-menu-menu>
+    </div>
   </sui-menu>
   
   <sui-container id="conteudo"> 
@@ -152,6 +157,9 @@
   [class*="or lower hidden"]:not(.tablet):not(.mobile) {
     display: none !important;
   }
+  #conteudo,.ui.menu {
+    margin-left: 80%
+  }
 }
 
 /* Large Monitor */
@@ -164,6 +172,9 @@
   [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
     display: none !important;
   }
+  #conteudo,.ui.menu {
+    margin-left: 80%
+  }
 }
 
 /* Widescreen Monitor */
@@ -175,6 +186,9 @@
   [class*="widescreen hidden"],
   [class*="widescreen or lower hidden"] {
     display: none !important;
+  }
+  #conteudo,.ui.menu {
+    margin-left: 80%
   }
 }
 </style>
