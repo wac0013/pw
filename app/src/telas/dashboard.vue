@@ -1,141 +1,10 @@
-<<<<<<< HEAD
-<template>
-<div id="dashboard">
-  <sui-sidebar animation="push" class="inverted vertical menu">
-    <sui-menu-item>Usuário</sui-menu-item>
-    <router-link to="/feed"><sui-menu-item>Início<sui-icon name="home"/></sui-menu-item></router-link>
-    <router-link to="/atualizar-perfil"><sui-menu-item>Cadastro</sui-menu-item></router-link>
-    <sui-menu-item link @click="showModalSobre">Sobre<sui-icon name="info circle"/></sui-menu-item>
-    <router-link to="/sys/login"><sui-menu-item link>Sair<sui-icon name="sign out alternate icon"/></sui-menu-item></router-link>
-  </sui-sidebar>
-  <sui-menu fixed="left" inverted vertical class="tablet or lower hidden">
-    <sui-menu-item>Usuário</sui-menu-item>
-    <sui-menu-item><router-link >Cadastro</router-link></sui-menu-item>
-    <sui-menu-item><router-link to="/sys/login">Sair <sui-icon name="sign out alternate icon"/></router-link></sui-menu-item>
-  </sui-menu>
-  <sui-menu fixed="top" inverted pointing>
-    <sui-menu-item icon=bars link position="left" onclick="$('.ui.sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
-    <sui-menu-menu position="right">
-      <sui-menu-item right>
-        <sui-input inverted icon="search" placeholder="Pesquisar...a" />
-      </sui-menu-item>
-    </sui-menu-menu>
-  </sui-menu>
-
-  <ocorrencia></ocorrencia>
-
-  <h1>oioioi</h1>
-
-  <router-view></router-view>
-
-  <sui-modal v-model="modal_sobre">
-    <sui-modal-header>Informações</sui-modal-header>
-      <sui-modal-content image>
-        <sui-image wrapped size="medium" src="static/images/avatar/large/rachel.png" />
-        <sui-modal-description>
-          <sui-header>Default Profile Image</sui-header>
-          <p>We've found the following gravatar image associated with your e-mail address.</p>
-          <p>Is it okay to use this photo?</p>
-        </sui-modal-description>
-      </sui-modal-content>
-      <sui-modal-actions>
-        <sui-button floated="right" positive @click.native="toggle">
-          OK
-        </sui-button>
-      </sui-modal-actions>
-  </sui-modal>
-</div>
-</template>
-
-<script>
-  import Ocorrencia from '@/telas/ocorrencia'
-
-  $('.ui.sidebar').sidebar({context: $('#dashboard')});
-  export default {
-    components: {
-      ocorrencia: Ocorrencia
-    },
-
-    data(){
-      return {
-        modal_sobre: false
-      }
-    }, 
-    methods: {
-      showModalSobre(){
-        this.modal_sobre = !this.modal_sobre;
-      }
-    }
-  };
-</script>
-
-<style lang="scss">
-@media only screen and (max-width: 767px) {
-  [class*="mobile hidden"],
-  [class*="tablet only"]:not(.mobile),
-  [class*="computer only"]:not(.mobile),
-  [class*="large screen only"]:not(.mobile),
-  [class*="widescreen only"]:not(.mobile),
-  [class*="or lower hidden"] {
-    display: none !important;
-  }
-}
-
-/* Tablet / iPad Portrait */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  [class*="mobile only"]:not(.tablet),
-  [class*="tablet hidden"],
-  [class*="computer only"]:not(.tablet),
-  [class*="large screen only"]:not(.tablet),
-  [class*="widescreen only"]:not(.tablet),
-  [class*="or lower hidden"]:not(.mobile) {
-    display: none !important;
-  }
-}
-
-/* Computer / Desktop / iPad Landscape */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  [class*="mobile only"]:not(.computer),
-  [class*="tablet only"]:not(.computer),
-  [class*="computer hidden"],
-  [class*="large screen only"]:not(.computer),
-  [class*="widescreen only"]:not(.computer),
-  [class*="or lower hidden"]:not(.tablet):not(.mobile) {
-    display: none !important;
-  }
-}
-
-/* Large Monitor */
-@media only screen and (min-width: 1200px) and (max-width: 1919px) {
-  [class*="mobile only"]:not([class*="large screen"]),
-  [class*="tablet only"]:not([class*="large screen"]),
-  [class*="computer only"]:not([class*="large screen"]),
-  [class*="large screen hidden"],
-  [class*="widescreen only"]:not([class*="large screen"]),
-  [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
-    display: none !important;
-  }
-}
-
-/* Widescreen Monitor */
-@media only screen and (min-width: 1920px) {
-  [class*="mobile only"]:not([class*="widescreen"]),
-  [class*="tablet only"]:not([class*="widescreen"]),
-  [class*="computer only"]:not([class*="widescreen"]),
-  [class*="large screen only"]:not([class*="widescreen"]),
-  [class*="widescreen hidden"],
-  [class*="widescreen or lower hidden"] {
-    display: none !important;
-  }
-}
-</style>
-=======
 <template>
 <div id="dashboard">
   <sui-sidebar animation="push" class="inverted vertical menu" id="sidebar">
     <sui-menu-item>Usuário</sui-menu-item>
     <router-link to="/feed"><sui-menu-item @click="hideSideBar" link>Início<sui-icon name="home"/></sui-menu-item></router-link>
     <router-link to="/atualizar-perfil"><sui-menu-item @click="hideSideBar" link>Cadastro<sui-icon name="edit"/></sui-menu-item></router-link>
+    <router-link to="/ocorrencias"><sui-menu-item @click="hideSideBar" link>Cadastrar ocorrências<sui-icon name="help"/></sui-menu-item></router-link>
     <sui-menu-item link @click="hideSideBar(); showModalSobre()">Sobre<sui-icon name="info circle"/></sui-menu-item>
     <router-link to="/sys/login"><sui-menu-item @click="hideSideBar" link>Sair<sui-icon name="sign out alternate icon"/></sui-menu-item></router-link>
   </sui-sidebar>
@@ -216,6 +85,7 @@
 #modal{
   top: 30% 
 }
+
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
@@ -275,4 +145,3 @@
   }
 }
 </style>
->>>>>>> d60637cc3b588bf99f74acf10d6642ad978cd0dd

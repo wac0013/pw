@@ -18,7 +18,7 @@ export default new Router({
       component: index
     },
     {
-      path: '/ocorrencia',
+      path: '/ocorrencias',
       name: 'Ocorrencias',
       component: ocorrencia
     },
