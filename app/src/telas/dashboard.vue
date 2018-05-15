@@ -67,7 +67,7 @@
       }
     },
     mounted(){
-      $('#conteudo').css("margin-top", "10%");
+      $('#conteudo').css("margin-top", "5em");
     },
     methods: {
       showModalSobre(){

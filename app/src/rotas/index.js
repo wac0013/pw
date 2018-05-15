@@ -18,11 +18,6 @@ export default new Router({
       component: index
     },
     {
-      path: '/ocorrencias',
-      name: 'Ocorrencias',
-      component: ocorrencia
-    },
-    {
       path: '/sys/login',
       name: 'Login',
       component: login
@@ -41,6 +36,11 @@ export default new Router({
           path: '/feed',
           name: 'feed',
           component: feed
+        },
+        {
+          path: '/ocorrencias',
+          name: 'Ocorrencias',
+          component: ocorrencia
         }
       ]
     }

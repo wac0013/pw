@@ -18,7 +18,7 @@
         <sui-checkbox
           label="Sim"
           radio
-          value="true"
+          value="1"
           v-model="ofereceRecompensa"
         />
         </sui-form-field>
@@ -26,21 +26,21 @@
           <sui-checkbox
             label="Não"
             radio
-            value="false"
+            value="2"
             v-model="ofereceRecompensa"
-            v-on:click="ofereceRecompensa=false"
+            
           />
         </sui-form-field>
     </sui-form-fields>
 
-    <sui-form-field v-if="ofereceRecompensa">
+    <sui-form-field v-if="ofereceRecompensa==1">
       <label>Valor da recompensa:</label>
       <input type="number" placeholder="100,00">
     </sui-form-field>
 
     <sui-form-field>
       <label>Telefone para contato</label>
-      <input type="number" placeholder="(99) 99999-9999" >
+      <the-mask :mask="['(##) ####-####', '(##) #####-####']" placeholder="(99) 99999-9999"/>
     </sui-form-field>
 
     <sui-form-fields inline>
@@ -49,7 +49,7 @@
         <sui-checkbox
           label="Sim"
           radio
-          value='true'
+          value='1'
           v-model="enviarImagem"
         />
         </sui-form-field>
@@ -57,14 +57,13 @@
           <sui-checkbox
             label="Não"
             radio
-            value='false'
+            value='2'
             v-model="enviarImagem"
-            v-on:click="enviarImagem=false"
           />
         </sui-form-field>
     </sui-form-fields>
 
-    <template v-if="enviarImagem">
+    <template v-if="enviarImagem==1">
       <sui-form-field>
         <input type="file">
       </sui-form-field>
@@ -76,13 +75,17 @@
 </template>
 
 <script>
+  import {TheMask} from 'vue-the-mask';
+
   export default {
     name: 'ocorrencia',
-    data: function() {
-      return { 
-        value: '1',
-        enviarImagem: false,
-        ofereceRecompensa: false
+    components: {
+      TheMask
+    },
+    data() {
+      return {
+        enviarImagem: 0,
+        ofereceRecompensa: 0
       }
     }
   };

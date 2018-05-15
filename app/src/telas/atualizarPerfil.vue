@@ -18,7 +18,7 @@
     </sui-form-field>
     <sui-form-field>
       <label>Telefone</label>
-         <input placeholder="(##)9####-####" >
+        <the-mask :mask="['(##) ####-####', '(##) #####-####']" placeholder="(99) 99999-9999"/>
     </sui-form-field>
     <sui-form-field>
       <label>Detalhes importantes</label>
@@ -29,10 +29,12 @@
 </template>
 
 <script>
+import {TheMask} from 'vue-the-mask'
+
 export default {
   name: 'atualizar-perfil',
-  mounted() {
-    $(this.$el).css("margin-top", "3em");
+  components: {
+    TheMask
   }
 };
 </script>
