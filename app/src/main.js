@@ -1,14 +1,17 @@
 import Vue from 'vue'
-import principal from './telas/principal'
 import router from './rotas'
 import semantic from 'semantic-ui-vue'
+import login from '@/telas/login'
 
-Vue.component('principal', principal);
+Vue.component('login', login);
 Vue.use(semantic);
 
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,
-  components: principal
+  created() {
+    this._router.push('/sys/login');
+  },
+  components: login
 })

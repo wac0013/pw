@@ -49,9 +49,9 @@ export default {
       setTimeout(function () {
         $(self.$refs["form"].$el).removeClass('loading');
         if (self.usuario.login != '' && self.usuario.senha != '') {
-          self.$root.$router.push('/sys/dashboard');
+          self.$root.$router.push('/feed');
         }
-      }, 3000);
+      }, 1000);
     }
   }
 }
