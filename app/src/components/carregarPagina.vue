@@ -15,7 +15,7 @@ export default {
 };
 
 const finalizaCarregamentoPagina = function() {
-  $('#principal').addClass('loaded');
+  $('body').addClass('loaded');
   $('h1').css('color','#222222');
 }
 </script>

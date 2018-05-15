@@ -1,5 +1,6 @@
 <template>
   <sui-card class="centered raised blue separador">
+    <carregar-pagina/>
     <sui-card-content>
       <sui-card-header >Bem Vindo</sui-card-header>
       <sui-card-meta>Projeto Programação Web</sui-card-meta>
@@ -29,9 +30,13 @@
 </template>
 
 <script>
-import * as util from '@/utils/lib'
+import carregarPagina from '@/components/carregarPagina'
 
 export default {
+  name: "login",
+  components: {
+    carregarPagina
+  },
   data(){
     return {
       usuario:{

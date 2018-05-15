@@ -1,6 +1,6 @@
 <template>
 <sui-grid>
-  <sui-card-group itemsPerRow="3">
+  <sui-card-group itemsPerRow=3>
     <sui-card>
       <sui-image src="/img/wellington.jpg" />
       <sui-card-content>
@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  
+  name: 'feed'
 }
 </script>
 
