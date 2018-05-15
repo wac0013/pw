@@ -55,6 +55,11 @@ export default new Router({
           component: cadastro
         }
       ]
-    }
+    },
+    {
+      path: '/sys/atualizar-perfil',
+      name: 'atualizarPerfil',
+      component: atualizarPerfil
+    },
   ]
 })

@@ -1,9 +1,9 @@
 <template>
 <sui-grid>
-  <sui-card-group itemsPerRow=3>
-    <sui-card v-for="ocorrencia in this.$root.ocorrencias" :key="ocorrencia.categoria">      
-      <sui-image src="/img/sem-imagem.png" v-if="ocorrencia['imagens'][0] == undefined"/>
-      <sui-image :src="ocorrencia['imagens'][0]" v-else />
+  <sui-card-group>
+    <sui-card v-for="ocorrencia in this.$root.ocorrencias" :key="ocorrencia.categoria ">      
+      <sui-image src="/img/sem-imagem.png" v-if="ocorrencia['imagens'][0] == undefined" @click="detalhar(ocorrencia)"/>
+      <sui-image :src="ocorrencia['imagens'][0]" v-else  @click="detalhar(ocorrencia)"/>
       <sui-card-content>
         <sui-card-header>{{ocorrencia['categoria']}}</sui-card-header>
         <sui-card-meta>{{ocorrencia['telefone_contato']}}</sui-card-meta>
@@ -29,6 +29,11 @@ export default {
       default: 'todos'
     }
   },
+  methods:{
+    detalhar(ocorrencia){
+      
+    }
+  }/*,
   computed: {
     Filtrados: function () {
       return this.$root.ocorrencias.filter(function (o) {
