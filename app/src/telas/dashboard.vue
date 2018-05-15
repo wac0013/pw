@@ -58,7 +58,7 @@
     </router-link>
   </sui-menu>
 
-  <sui-menu fixed="top" inverted secundary id="top-menu">
+  <sui-menu fixed="top" inverted secundary id="top-menu" class="esquerda">
     <div class="ui container">
         <sui-menu-item icon=bars link position="left" onclick="$('#sidebar').sidebar('show')" class="tablet mobile only"></sui-menu-item>
         <sui-menu-item link>
@@ -86,7 +86,7 @@
     </div>
   </sui-menu>
   
-  <sui-container id="conteudo"> 
+  <sui-container id="conteudo" class="esquerda"> 
     <router-view></router-view>
   </sui-container>
 
@@ -116,7 +116,7 @@
               <a href="https://www.w3schools.com/css/"><sui-image spaced="left" wrapped size="mini" src="/img/css.png"/></a>
               <a href="https://www.javascript.com/"><sui-image spaced="left" wrapped size="mini" src="/img/js.png"/></a>
               <a href="https://nodejs.org/"><sui-image spaced="left" wrapped size="mini" src="/img/nodejs.png"/></a>
-            </sui-image-group>
+            </sui-image-group>0
         </p>
         </sui-modal-description>
       </sui-modal-content>
@@ -125,18 +125,6 @@
 </template>
 
 <script>
-  $(window).resize(function() {
-    if ($(window).width() > 992) {
-      $("#conteudo").css("margin-left",$("menu_lateral").width());
-      $("#top-menu").css("margin-left",$("menu_lateral").width());
-    }    
-  });
-
-  if ($(window).width() > 992) {
-    $("#conteudo").css("margin-left",$("menu_lateral").width());
-    $("#top-menu").css("margin-left",$("menu_lateral").width());
-  }
-
   export default {
     data(){
       return {
@@ -145,6 +133,8 @@
     },
     mounted(){
       $('#conteudo').css("margin-top", "5em");
+      // $('#menu_lateral').css("margin-top", $('#top-menu').height());
+      // $('#conteudo').css("margin-left", $('#menu_lateral').height());
     },
     methods: {
       showModalSobre(){
@@ -195,9 +185,6 @@
   [class*="or lower hidden"]:not(.tablet):not(.mobile) {
     display: none !important;
   }
-  #conteudo,.ui.menu {
-    margin-left: 80%
-  }
 }
 
 /* Large Monitor */
@@ -209,9 +196,6 @@
   [class*="widescreen only"]:not([class*="large screen"]),
   [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
     display: none !important;
-  }
-  #conteudo,.ui.menu {
-    margin-left: 80%
   }
 }
 
@@ -225,8 +209,15 @@
   [class*="widescreen or lower hidden"] {
     display: none !important;
   }
-  #conteudo,.ui.menu {
-    margin-left: 80%
+}
+
+@media only screen and (min-width: 992px){
+  .esquerda#top-menu{
+    margin-left: 15rem 
+  }
+  .esquerda.ui.container{
+    margin-left: 16rem !important;
+    max-width: 90% !important 
   }
 }
 </style>
