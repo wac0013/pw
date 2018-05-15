@@ -5,6 +5,7 @@ import dashboard from '@/telas/dashboard'
 import index from '@/site/index'
 import ocorrencia from '@/telas/ocorrencia'
 import atualizarPerfil from '@/telas/atualizarPerfil'
+import casoDetalhado from '@/telas/caso-detalhado'
 import feed from '@/telas/feed'
 
 Vue.use(Router);
@@ -41,6 +42,11 @@ export default new Router({
           path: '/ocorrencias',
           name: 'Ocorrencias',
           component: ocorrencia
+        },
+        {
+          path: '/sys/caso-detalhado',
+          name: 'CasoDetalhado',
+          component: casoDetalhado
         }
       ]
     }
