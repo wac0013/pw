@@ -17,7 +17,7 @@
     
     <sui-form-field>
       <label>Telefone</label>
-      <input placeholder="Ex: (##)9####-####" >
+      <the-mask :mask="['(##) ####-####', '(##) #####-####']" placeholder="(99) 99999-9999"/>
     </sui-form-field>
     
     <sui-form-field>
@@ -71,7 +71,16 @@
 </template>
 
 <script>
+import {TheMask} from 'vue-the-mask'
+
 export default {
-  name: 'cadastro-usuario',
+  name: 'cadastro',
+  component: {
+    TheMask
+  }
 };
 </script>
+
+<style scoped>
+
+</style>

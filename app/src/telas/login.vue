@@ -23,6 +23,11 @@
                 <i v-if="carregando" class="spinner loading icon right aligned"></i>
               </button>
             </div>
+            <div>
+              <router-link to="/cadastro">
+                <button id="cadastro" class="fluid ui secondary button" type="submit">Cadastrar</button>
+               </router-link> 
+            </div>
         </sui-form>
       </sui-card-description>
     </sui-card-content>

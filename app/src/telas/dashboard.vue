@@ -13,6 +13,11 @@
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/cadastro">
+        <sui-menu-item @click="hideSideBar" link>
+          Usuário<sui-icon name="user"/>
+        </sui-menu-item>
+      </router-link>
       <router-link to="/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
           Ocorrências<sui-icon name="edit"/>
@@ -42,6 +47,11 @@
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
+      <router-link to="/cadastro">
+        <sui-menu-item @click="hideSideBar" link>
+          Usuário<sui-icon name="user"/>
+        </sui-menu-item>
+      </router-link>
       <router-link to="/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
           Ocorrências<sui-icon name="edit"/>
@@ -125,6 +135,16 @@
 </template>
 
 <script>
+  $(window).resize(function() {
+    if ($(window).width() > 992) {
+      $("#conteudo").css("margin-left",$("menu_lateral").width());
+      $("#top-menu").css("margin-left",$("menu_lateral").width());
+    }    
+  });
+  if ($(window).width() > 992) {
+    $("#conteudo").css("margin-left",$("menu_lateral").width());
+    $("#top-menu").css("margin-left",$("menu_lateral").width());
+  }
   export default {
     data(){
       return {
@@ -151,7 +171,6 @@
 .ui.modal{
   top: 20% !important
 }
-
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
@@ -162,7 +181,6 @@
     display: none !important;
   }
 }
-
 /* Tablet / iPad Portrait */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   [class*="mobile only"]:not(.tablet),
@@ -174,7 +192,6 @@
     display: none !important;
   }
 }
-
 /* Computer / Desktop / iPad Landscape */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   [class*="mobile only"]:not(.computer),
@@ -186,7 +203,6 @@
     display: none !important;
   }
 }
-
 /* Large Monitor */
 @media only screen and (min-width: 1200px) and (max-width: 1919px) {
   [class*="mobile only"]:not([class*="large screen"]),
@@ -198,7 +214,6 @@
     display: none !important;
   }
 }
-
 /* Widescreen Monitor */
 @media only screen and (min-width: 1920px) {
   [class*="mobile only"]:not([class*="widescreen"]),
