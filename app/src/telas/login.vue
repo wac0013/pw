@@ -1,5 +1,6 @@
 <template>
   <sui-card class="centered raised blue separador">
+    <carregar-pagina/>
     <sui-card-content>
       <sui-card-header >Bem Vindo</sui-card-header>
       <sui-card-meta>Projeto Programação Web</sui-card-meta>
@@ -29,9 +30,13 @@
 </template>
 
 <script>
-import * as util from '@/utils/lib'
+import carregarPagina from '@/components/carregarPagina'
 
 export default {
+  name: "login",
+  components: {
+    carregarPagina
+  },
   data(){
     return {
       usuario:{
@@ -49,9 +54,13 @@ export default {
       setTimeout(function () {
         $(self.$refs["form"].$el).removeClass('loading');
         if (self.usuario.login != '' && self.usuario.senha != '') {
-          self.$root.$router.push('/sys/dashboard');
+          self.$root.$router.push('/feed');
+          self.$root.usuario.login = self.usuario.login;
+          self.$root.usuario.senha = self.usuario.senha;
+          self.$root.usuario.nome = 'Dead Pool';
+          self.$root.usuario.descricao = 'Zoeiro';
         }
-      }, 3000);
+      }, 1000);
     }
   }
 }
