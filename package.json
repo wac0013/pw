@@ -4,7 +4,8 @@
   "description": "projeto da matéria de gp2",
   "scripts": {
     "pro": "gulp pro",
-    "dev": "gulp dev"
+    "dev": "gulp dev",
+    "server": "node ./server/bin/www"
   },
   "repository": {
     "type": "git",
@@ -55,8 +56,13 @@
     "webpack-merge": "4.1.1"
   },
   "dependencies": {
-    "gulp-cli": "^2.0.1",
-    "vue": "2.5.13",
-    "vue-cli": "^2.9.3"
+    "cookie-parser": "~1.4.3",
+    "debug": "2.6.9",
+    "express": "4.16.3",
+    "gulp-cli": "2.0.1",
+    "http-errors": "1.6.2",
+    "morgan": "1.9.0",
+    "mysql": "2.15.0",
+    "vue": "2.5.13"
   }
 }

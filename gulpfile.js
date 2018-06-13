@@ -7,7 +7,7 @@ const gulp    = require('gulp'),
 
 //
 gulp.task('copiar-public', () => {
-  return gulp.src(['./app/static/**/*.*'])
+  return gulp.src(['./client/static/**/*.*'])
     .pipe(gulp.dest('./dist/public/'))
 })
 //
@@ -47,7 +47,7 @@ gulp.task('app-dev', (cb) => {
 })
 //
 gulp.task('monitorar-public', function(done) {
-  gulp.watch(['app/static/*.*', 'app/static/**/*.*'], gulp.series('copiar-public'));
+  gulp.watch(['client/static/*.*', 'client/static/**/*.*'], gulp.series('copiar-public'));
   done();
 })
 //
