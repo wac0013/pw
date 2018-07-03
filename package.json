@@ -16,10 +16,13 @@
     "programação",
     "web"
   ],
-  "author": [
-    "Wellington Alves <wac.0013@gmail.com>"
+  "author": "Wellington Alves <wac.0013@gmail.com>",
+  "contributors": [
+    "João Victor Dias <>",
+    "Paulo <>",
+    "Karoline Walczak <>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://bitbucket.org/wac013/gp2#readme",
   "devDependencies": {
     "babel": "6.23.0",
