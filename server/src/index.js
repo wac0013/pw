@@ -11,14 +11,14 @@ var
 var app = express();
 
 // configurando engines de visualização
-app.set('views', path.join(__dirname, 'client/static/view'));
+app.set('views', path.join(__dirname, 'dist/public/view'));
 app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/static')));
+app.use(express.static(path.join(__dirname, 'dist/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

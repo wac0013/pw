@@ -1,5 +1,6 @@
 const gulp    = require('gulp'),
   path        = require('path'),
+  nodemon     = require('gulp-nodemon'),
   gutil       = require('gulp-util'),
   del         = require('del'),
   config      = require('./config'),
@@ -46,9 +47,29 @@ gulp.task('app-dev', (cb) => {
   cb()
 })
 //
-gulp.task('monitorar-public', function(done) {
+gulp.task('monitorar-public', (done) => {
   gulp.watch(['client/static/*.*', 'client/static/**/*.*'], gulp.series('copiar-public'));
   done();
 })
+//
+gulp.task('dev-servidor', () => {
+  var stream = nodemon({
+    script: 'server/bin/www',
+    ext: 'js',
+    env: { 
+      'NODE_ENV': 'development',
+      'PORT': 3000
+    }
+  });
+
+  stream
+    .on('restart', function() {
+      console.log('restarted!')
+    })
+    .on('crash', function() {
+      console.error('Application has crashed!\n')
+      stream.emit('restart', 10)  // restart the server in 10 seconds
+    })
+});
 //
 gulp.task('dev', gulp.series('copiar-public', 'app-dev', gulp.parallel('monitorar-public')))

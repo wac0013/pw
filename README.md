@@ -14,7 +14,7 @@ Utilizando a IDE/editor de sua preferência realize o clone do repositório
 
 Para iniciar o desenvolvimento é necessário instalar as dependências necessárias para executar o projeto. Para isso execute o comando no terminal:
 
-```
+```sh
 npm install
 ```
 Após executar o comando acima, será criada o diretório __node_module__ com o código das dependências. Este diretório não é sincronizado com repositório git, pois está presente no arquivo .gitignore.
@@ -23,7 +23,7 @@ Após executar o comando acima, será criada o diretório __node_module__ com o 
 
 No projeto exite o arquivo gulpfile.js, este arquivo é responsável por automatizar o processo de desenvolvimento do aplicativo, utilizando a ferramenta gulp. Para maiores informações [Gulp](https://gulpjs.com/).
 
-```
+```sh
 npm install gulp -g
 ```
 
@@ -31,7 +31,7 @@ npm install gulp -g
 
 Com as dependências devidamente instaladas, para executar o projeto em modo de desenvolvimento basta usar o seguinte comando:
 
-```
+```sh
 gulp dev
 ```
 Ao executar o comando acima, o projeto será executado de forma a criar um servidor que fornecerá a página 
