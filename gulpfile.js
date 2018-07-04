@@ -56,6 +56,7 @@ gulp.task('dev-servidor', () => {
   var stream = nodemon({
     script: 'server/bin/www',
     ext: 'js',
+    watch: 'server/*',
     env: { 
       'NODE_ENV': 'development',
       'PORT': 3000
@@ -72,4 +73,4 @@ gulp.task('dev-servidor', () => {
     })
 });
 //
-gulp.task('dev', gulp.series('copiar-public', 'app-dev', gulp.parallel('monitorar-public')))
+gulp.task('dev', gulp.series('copiar-public', 'dev-servidor', gulp.parallel('monitorar-public')))
