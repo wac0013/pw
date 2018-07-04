@@ -14,6 +14,20 @@ var app = express();
 app.set('views', path.join(__dirname, 'dist/public/view'));
 app.set('view engine', 'html');
 
+if (process.env.NODE_ENV === 'dev' || 'development') {
+  var
+    webpack               = require('webpack'),
+    config                = require('../../webpack.config'),
+    webpackDevMiddleware  = require('webpack-dev-middleware'),
+    webpackHotMiddleware  = require('webpack-hot-middleware'),
+    compiler               = webpack(config);
+
+  app.use(webpackDevMiddleware(compiler, {
+
+  }));
+  app.use(webpackHotMiddleware(compiler));
+}
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
