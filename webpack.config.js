@@ -10,7 +10,7 @@ const path              = require('path'),
 
 function configuraWebpack() {
   let configuracao = {
-    entry: [path.join(__dirname, './app/src/main.js')/* , 'webpack-hot-middleware/client?overlay=false' */],
+    entry: [path.join(__dirname, './client/src/main.js')/* , 'webpack-hot-middleware/client?overlay=false' */],
     output: {
       path: config.rootDir,
       filename: 'js/[name].js',
@@ -20,7 +20,7 @@ function configuraWebpack() {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         'vue$': 'vue/dist/vue.esm.js',
-        '@': path.join(__dirname, './app/src')
+        '@': path.join(__dirname, './client/src')
       }
     },
     module: {
@@ -79,7 +79,7 @@ function configuraWebpack() {
         new ExtractTextPlugin('css/style.css'),
         new HtmlWebpackPlugin({
           filename: 'index.html',
-          template: path.join(__dirname, './app/static/view/index.html'),
+          template: path.join(__dirname, './client/static/view/index.html'),
           inject: true,
           minify: {
             removeComments: true,
@@ -107,7 +107,7 @@ function configuraWebpack() {
         new ExtractTextPlugin('css/style.css'),
         new HtmlWebpackPlugin({
           filename: 'index.html',
-          template: path.join(__dirname, './app/static/view/index.html'),
+          template: path.join(__dirname, './client/static/view/index.html'),
           inject: true
         })
       ]
