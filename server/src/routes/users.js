@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var caminte = require('caminte');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/usuarios/:id', function(req, res, next) {
   res.send('respond with a resource');
 });
 
