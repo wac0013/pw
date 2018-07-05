@@ -23,9 +23,11 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
     compiler               = webpack(config);
 
   app.use(webpackDevMiddleware(compiler, {
-
+    publicPath: config.output.publicPath
   }));
-  app.use(webpackHotMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler, {
+    reload: true
+  }));
 }
 
 app.use(logger('dev'));

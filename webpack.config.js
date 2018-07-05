@@ -6,7 +6,7 @@ const path              = require('path'),
   FriendlyErrorsPlugin  = require('friendly-errors-webpack-plugin'),
   HtmlWebpackPlugin     = require('html-webpack-plugin'),
   DashboardPlugin       = require('webpack-dashboard/plugin'),
-  ExtractTextPlugin     = require('extract-text-webpack-plugin');
+  MiniCssExtractPlugin     = require('mini-css-extract-plugin');
 
 function configuraWebpack() {
   let configuracao = {
@@ -31,10 +31,11 @@ function configuraWebpack() {
           options: {
             loaders: {
               js: 'babel-loader',
-              css: ExtractTextPlugin.extract({
+              css: MiniCssExtractPlugin.loader,
+              options: {
                 use: 'css-loader',
                 fallback: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
-              })
+              }
             }
           }
         },
@@ -76,7 +77,7 @@ function configuraWebpack() {
       devtool: '#source-map',
       plugins: [
         new webpack.optimize.UglifyJsPlugin({ minimize: true }),
-        new ExtractTextPlugin('css/style.css'),
+        new MiniCssExtractPlugin('css/style.css'),
         new HtmlWebpackPlugin({
           filename: 'index.html',
           template: path.join(__dirname, './client/static/view/index.html'),
@@ -104,7 +105,7 @@ function configuraWebpack() {
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.NamedModulesPlugin(),
         new FriendlyErrorsPlugin(),
-        new ExtractTextPlugin('css/style.css'),
+        new MiniCssExtractPlugin('css/style.css'),
         new HtmlWebpackPlugin({
           filename: 'index.html',
           template: path.join(__dirname, './client/static/view/index.html'),
