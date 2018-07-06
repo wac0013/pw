@@ -4,6 +4,7 @@ const gulp    = require('gulp-v4'),
   gutil       = require('gulp-util'),
   del         = require('del'),
   config      = require('./config'),
+  webpack     = require('webpack'),
   WebpackDevServer  = require('webpack-dev-server')
 
 //
@@ -57,7 +58,10 @@ gulp.task('dev-servidor', () => {
     script: 'server/bin/www',
     exec: 'node --inspect-brk=9229',
     ext: 'js',
-    watch: 'server/*',
+    watch: [
+      'server/*',
+      'webpack.config.js'
+    ],
     delay: 3000
   });
 
@@ -67,8 +71,14 @@ gulp.task('dev-servidor', () => {
     })
     .on('crash', function() {
       console.error('Aplicação parou de funcionar! Reiniciando em 5 segundos\n')
-      stream.emit('restart', 5000)  // restart the server in 5 seconds
+      stream.emit('restart', 100)  // restart the server in 5 seconds
     })
+});
+//
+gulp.task('webpack', function() {
+  return gulp.src('client/src/main.js')
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('dist/public/'));
 });
 //
 gulp.task('dev', gulp.series('copiar-public', 'dev-servidor', gulp.parallel('monitorar-public')))

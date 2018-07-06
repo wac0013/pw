@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "projeto da matéria de gp2",
   "scripts": {
-    "pro": "gulp pro",
-    "dev": "gulp dev",
+    "pro": "node_modules\\.bin\\gulp pro",
+    "dev": "node_modules\\.bin\\gulp dev",
     "start": "node ./server/bin/www"
   },
   "repository": {
@@ -64,6 +64,7 @@
     "caminte": "^0.4.1",
     "cookie-parser": "^1.4.3",
     "debug": "^2.6.9",
+    "ejs": "^2.6.1",
     "express": "4.16.3",
     "gulp-nodemon": "^2.2.1",
     "http-errors": "1.6.2",

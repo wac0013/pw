@@ -11,7 +11,8 @@
       "port": 9229,
       "restart": true,
       "timeout": 100000,
-      "internalConsoleOptions": "neverOpen"
+      "internalConsoleOptions": "neverOpen",
+      "stopOnEntry": false
     },
     {
       "type": "node",
