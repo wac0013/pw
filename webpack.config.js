@@ -7,7 +7,7 @@ const path              = require('path'),
   HtmlWebpackPlugin     = require('html-webpack-plugin'),
   DashboardPlugin       = require('webpack-dashboard/plugin'),
   MiniCssExtractPlugin  = require('mini-css-extract-plugin'),
-  CopyWebpackPlugin     = require('copy-webpack-plugin'),
+  // CopyWebpackPlugin     = require('copy-webpack-plugin'),
   VueLoaderPlugin       = require('vue-loader/lib/plugin');
 
 function configuraWebpack() {
@@ -73,10 +73,10 @@ function configuraWebpack() {
       ]
     },
     plugins: [
-      new VueLoaderPlugin(),
+      new VueLoaderPlugin()/* ,
       new CopyWebpackPlugin([
         { from: 'client/static/', to: 'dist/', force: true}
-      ], {debug: 'info'})
+      ], {debug: 'info'}) */
     ]
   }
 
