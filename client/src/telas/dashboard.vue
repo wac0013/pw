@@ -9,7 +9,7 @@
     <router-link to="/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
-      </sui-menu-item>    
+      </sui-menu-item>
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
@@ -43,7 +43,7 @@
     <router-link to="/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
-      </sui-menu-item>    
+      </sui-menu-item>
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
@@ -95,8 +95,8 @@
       </sui-menu-item>
     </div>
   </sui-menu>
-  
-  <sui-container id="conteudo" class="esquerda"> 
+
+  <sui-container id="conteudo" class="esquerda">
     <router-view></router-view>
   </sui-container>
 
@@ -139,7 +139,7 @@
     if ($(window).width() > 992) {
       $("#conteudo").css("margin-left",$("menu_lateral").width());
       $("#top-menu").css("margin-left",$("menu_lateral").width());
-    }    
+    }
   });
   if ($(window).width() > 992) {
     $("#conteudo").css("margin-left",$("menu_lateral").width());
@@ -167,10 +167,10 @@
   };
 </script>
 
-<style lang="scss">
-.ui.modal{
-  top: 20% !important
-}
+<style lang="css">
+  .ui.modal{
+    top: 20% !important
+  }
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
   [class*="tablet only"]:not(.mobile),
@@ -228,11 +228,11 @@
 
 @media only screen and (min-width: 992px){
   .esquerda#top-menu{
-    margin-left: 15rem 
+    margin-left: 15rem
   }
   .esquerda.ui.container{
     margin-left: 16rem !important;
-    max-width: 90% !important 
+    max-width: 90% !important
   }
 }
 </style>

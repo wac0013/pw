@@ -18,7 +18,7 @@ gulp.task('copiar-conf', () => {
 })
 //
 gulp.task('limpar', () => {
-  return del.sync(['./dist/**'])
+  return del.sync(['./dist/**']);
 })
 //
 gulp.task('copiar', gulp.parallel('limpar', 'copiar-public', 'copiar-conf'))
@@ -57,10 +57,11 @@ gulp.task('dev-servidor', () => {
     script: 'server/bin/www',
     ext: 'js',
     watch: 'server/*',
-    env: { 
+    env: {
       'NODE_ENV': 'development',
       'PORT': 3000
-    }
+    },
+    delay: 2500
   });
 
   stream

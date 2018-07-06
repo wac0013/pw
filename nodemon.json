@@ -1,0 +1,17 @@
+{
+  "delay": 3000,
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/*"
+  ],
+  "verbose": false,
+  "watch": [
+    "server/*",
+    "webpack.config.js"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js"
+}
