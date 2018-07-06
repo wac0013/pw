@@ -6,7 +6,9 @@ const path              = require('path'),
   FriendlyErrorsPlugin  = require('friendly-errors-webpack-plugin'),
   HtmlWebpackPlugin     = require('html-webpack-plugin'),
   DashboardPlugin       = require('webpack-dashboard/plugin'),
-  MiniCssExtractPlugin     = require('mini-css-extract-plugin');
+  MiniCssExtractPlugin  = require('mini-css-extract-plugin'),
+  CopyWebpackPlugin     = require('copy-webpack-plugin'),
+  VueLoaderPlugin       = require('vue-loader/lib/plugin');
 
 function configuraWebpack() {
   let configuracao = {
@@ -27,7 +29,7 @@ function configuraWebpack() {
       rules: [
         {
           test: /\.vue$/,
-          loader: 'vue-loader',
+          loader: 'vue-loader' /* ,
           options: {
             loaders: {
               js: 'babel-loader',
@@ -37,7 +39,7 @@ function configuraWebpack() {
                 fallback: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
               }
             }
-          }
+          } */
         },
         {
           test: /\.js$/,
@@ -69,12 +71,19 @@ function configuraWebpack() {
           ]
         }
       ]
-    }
+    },
+    plugins: [
+      new VueLoaderPlugin(),
+      new CopyWebpackPlugin([
+        { from: 'client/static/', to: 'dist/', force: true}
+      ], {debug: 'info'})
+    ]
   }
 
   if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'pro') {
     return merge(configuracao, {
       devtool: '#source-map',
+      mode: 'production',
       plugins: [
         new webpack.optimize.UglifyJsPlugin({ minimize: true }),
         new MiniCssExtractPlugin('css/style.css'),
@@ -96,6 +105,7 @@ function configuraWebpack() {
   } else {
     return merge(configuracao, {
       devtool: 'eval-source-map',
+      mode: 'development',
       plugins: [
         new webpack.DefinePlugin({
           'process.env': config.env
