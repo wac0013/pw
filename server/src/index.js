@@ -11,6 +11,8 @@ var
 var app = express();
 
 // configurando engines de visualização
+
+app.use(express.static(path.join(__dirname, 'dist/public')));
 app.set('views', path.join(__dirname, 'dist/public/view'));
 app.set('view engine', 'html');
 
@@ -23,10 +25,12 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
     compiler               = webpack(config);
 
   app.use(webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
+    logLevel: 'error'
   }));
   app.use(webpackHotMiddleware(compiler, {
-    reload: true
+    reload: true,
+    noInfo: true
   }));
 }
 
@@ -34,7 +38,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
