@@ -1,9 +1,10 @@
-const gulp    = require('gulp'),
+const gulp    = require('gulp-v4'),
   path        = require('path'),
   nodemon     = require('gulp-nodemon'),
   gutil       = require('gulp-util'),
   del         = require('del'),
   config      = require('./config'),
+  webpack     = require('webpack'),
   WebpackDevServer  = require('webpack-dev-server')
 
 //
@@ -55,23 +56,31 @@ gulp.task('monitorar-public', (done) => {
 gulp.task('dev-servidor', () => {
   var stream = nodemon({
     script: 'server/bin/www',
+    exec: 'node --inspect-brk=9229',
     ext: 'js',
-    watch: 'server/*',
-    env: {
-      'NODE_ENV': 'development',
-      'PORT': 3000
-    },
-    delay: 2500
+    watch: [
+      'server/*',
+      'webpack.config.js'
+    ],
+    delay: 3000
   });
 
   stream
     .on('restart', function() {
-      console.log('restarted!')
+      console.log('Reiniciando!')
     })
     .on('crash', function() {
-      console.error('Application has crashed!\n')
-      stream.emit('restart', 10)  // restart the server in 10 seconds
+      console.error('Aplicação parou de funcionar! Reiniciando em 5 segundos\n')
+      stream.emit('restart', 100)  // restart the server in 5 seconds
     })
 });
 //
+gulp.task('webpack', function() {
+  return gulp.src('client/src/main.js')
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('dist/public/'));
+});
+//
 gulp.task('dev', gulp.series('copiar-public', 'dev-servidor', gulp.parallel('monitorar-public')))
+//
+gulp.task('public', gulp.series('copiar-public', 'monitorar-public'));

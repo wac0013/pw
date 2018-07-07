@@ -1,5 +1,5 @@
 <template lang="html" >
-  <sui-form v-on:submit.prevent class="container" style="width: 40%;margin:0 auto;">
+  <sui-form @submit="gravar_ocorrencia" class="container" style="width: 40%;margin:0 auto;">
     <sui-form-fields inline>
       <label>Tipo de ocorrencia</label>
       <sui-form-field required>
@@ -87,7 +87,7 @@
       </sui-form-field>
     </template>
 
-    <router-link to="/feed"><sui-button fluid primary type="submit">Salvar ocorrência</sui-button></router-link>
+    <sui-button fluid primary type="submit">Salvar ocorrência</sui-button>
 
   </sui-form>
 </template>
@@ -105,6 +105,16 @@
         enviarImagem: 0,
         ofereceRecompensa: 0,
         perdido: 0
+      }
+    },
+    methods: {
+      gravar_ocorrencia: function(){
+        var self = this;
+        $.post('/gravar_ocorrencia', function(data, status) {
+          if (status) {
+
+          } else if (false) this.$root.router.push('/feed');
+        })
       }
     }
   };

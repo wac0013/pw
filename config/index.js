@@ -13,8 +13,8 @@ module.exports = function() {
       host: '',
       porta_servidor: 3000,
       porta_cliente: 80,
-      index: path.resolve(__dirname, 'dist/public/view/index.html'),
-      rootDir: path.resolve(__dirname, 'dist/public'),
+      index: path.resolve(__dirname, '../dist/public/view/index.html'),
+      rootDir: path.resolve(__dirname, '../dist/public'),
       publicDir: 'dist/public',
       bd: bd.pro
     }
@@ -26,7 +26,7 @@ module.exports = function() {
       host: 'localhost',
       porta_cliente: 3000,
       abriNavegador: true,
-      rootDir: path.resolve(__dirname, 'dist/public'),
+      rootDir: path.resolve(__dirname, '../dist/public'),
       publicDir: '/',
       bd: bd.dev
     }

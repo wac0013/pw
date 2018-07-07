@@ -1,6 +1,6 @@
 var bd = require('../../database');
 
-var Ocorrencias = bd.define('Ocorrencia', {
+var Ocorrencias = bd.define('Ocorrencias', {
   id: {type: bd.NUMBER, unique: true},
   categoria: {type: bd.String,  limit: 3},
   local: {type: bd.String,  limit: 255},

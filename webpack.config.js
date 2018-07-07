@@ -7,12 +7,15 @@ const path              = require('path'),
   HtmlWebpackPlugin     = require('html-webpack-plugin'),
   DashboardPlugin       = require('webpack-dashboard/plugin'),
   MiniCssExtractPlugin  = require('mini-css-extract-plugin'),
-  CopyWebpackPlugin     = require('copy-webpack-plugin'),
+  // CopyWebpackPlugin     = require('copy-webpack-plugin'),
   VueLoaderPlugin       = require('vue-loader/lib/plugin');
 
 function configuraWebpack() {
   let configuracao = {
-    entry: [path.join(__dirname, './client/src/main.js')/* , 'webpack-hot-middleware/client?overlay=false' */],
+    entry: [
+      path.join(__dirname, './client/src/main.js'), /* , 'webpack-hot-middleware/client?overlay=false' */
+      'webpack-dev-server/client?http://' + config.host + ':' + config.porta_cliente + '/'
+    ],
     output: {
       path: config.rootDir,
       filename: 'js/[name].js',
@@ -73,10 +76,7 @@ function configuraWebpack() {
       ]
     },
     plugins: [
-      new VueLoaderPlugin(),
-      new CopyWebpackPlugin([
-        { from: 'client/static/', to: 'dist/', force: true}
-      ], {debug: 'info'})
+      new VueLoaderPlugin()
     ]
   }
 

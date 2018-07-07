@@ -60,6 +60,6 @@ export default new Router({
       path: '/sys/atualizar-perfil',
       name: 'atualizarPerfil',
       component: atualizarPerfil
-    },
+    }
   ]
 })

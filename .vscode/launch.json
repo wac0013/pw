@@ -1,0 +1,43 @@
+{
+  // Use o IntelliSense para aprender sobre possíveis atributos.
+  // Passe o mouse para ver as descrições dos atributos existentes.
+  // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach Nodemon",
+      "port": 9229,
+      "restart": true,
+      "timeout": 100000,
+      "internalConsoleOptions": "neverOpen",
+      "stopOnEntry": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "nodemon",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server/bin/www",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "args": [
+        "delay=3000"
+      ],"env": {
+        "PORT": "3000",
+        "NODE_ENV": "dev"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Gulp task",
+      "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+      "args": [
+        "dev"
+      ]
+    }
+  ]
+}

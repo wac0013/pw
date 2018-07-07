@@ -7,7 +7,7 @@ logs
 npm-debug.log*
 
 #Editores 
-.vscode/
+.vscode/settings.json
 .idea/
 
 #Arquivos compilados

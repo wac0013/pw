@@ -5,15 +5,15 @@ var
   cookieParser  = require('cookie-parser'),
   logger        = require('morgan'),
 
-  indexRouter   = require('./routes/index'),
-  usersRouter   = require('./routes/users');
+  indexRouter   = require('./routes/index');
 
 var app = express();
 
 // configurando engines de visualização
 
-app.use(express.static(path.join(__dirname, 'dist/public')));
-app.set('views', path.join(__dirname, 'dist/public/view'));
+app.use(express.static(path.join(__dirname, '../../dist/public')));
+app.set('views', path.join(__dirname, '../../dist/public/view'));
+app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 if (process.env.NODE_ENV === 'dev' || 'development') {
@@ -22,11 +22,12 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
     config                = require('../../webpack.config'),
     webpackDevMiddleware  = require('webpack-dev-middleware'),
     webpackHotMiddleware  = require('webpack-hot-middleware'),
-    compiler               = webpack(config);
+    compiler              = webpack(config);
 
   app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    logLevel: 'error'
+    logLevel: 'info',
+    quiet: true
   }));
   app.use(webpackHotMiddleware(compiler, {
     reload: true,
@@ -40,7 +41,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // captura erro 404 e para o manipulador de erro
 app.use(function(req, res, next) {
@@ -52,10 +52,10 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  next();
   // renderiza a página de erro
-  res.status(err.status || 500);
-  res.render('error');
+  // res.status(err.status || 500);
+  // res.render('error');
 });
 
 module.exports = app;
