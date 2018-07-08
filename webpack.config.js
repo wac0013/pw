@@ -13,8 +13,7 @@ const path              = require('path'),
 function configuraWebpack() {
   let configuracao = {
     entry: [
-      path.join(__dirname, './client/src/main.js'), /* , 'webpack-hot-middleware/client?overlay=false' */
-      'webpack-dev-server/client?http://' + config.host + ':' + config.porta_cliente + '/'
+      path.join(__dirname, './client/src/main.js') /* , 'webpack-hot-middleware/client?overlay=false' */
     ],
     output: {
       path: config.rootDir,

@@ -6,19 +6,19 @@
         <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
       </router-link>
     </sui-menu-item>
-    <router-link to="/feed">
+    <router-link to="/sys/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
       </sui-menu-item>
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
-      <router-link to="/cadastro">
+      <router-link to="/sys/cadastro">
         <sui-menu-item @click="hideSideBar" link>
           Usuário<sui-icon name="user"/>
         </sui-menu-item>
       </router-link>
-      <router-link to="/ocorrencias">
+      <router-link to="/sys/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
           Ocorrências<sui-icon name="edit"/>
         </sui-menu-item>
@@ -40,19 +40,19 @@
         <sui-image shape="circular" size="tiny" src="/img/wellington.jpg"/> {{this.$root.usuario.nome}}
       </router-link>
     </sui-menu-item>
-    <router-link to="/feed">
+    <router-link to="/sys/feed">
       <sui-menu-item @click="hideSideBar" link>
         Início<sui-icon name="home"/>
       </sui-menu-item>
     </router-link>
     <sui-menu-item @click="hideSideBar">
       <sui-menu-header>Cadastro</sui-menu-header>
-      <router-link to="/cadastro">
+      <router-link to="/sys/cadastro">
         <sui-menu-item @click="hideSideBar" link>
           Usuário<sui-icon name="user"/>
         </sui-menu-item>
       </router-link>
-      <router-link to="/ocorrencias">
+      <router-link to="/sys/ocorrencias">
         <sui-menu-item @click="hideSideBar" link>
           Ocorrências<sui-icon name="edit"/>
         </sui-menu-item>

@@ -7,21 +7,43 @@ router.get('/', function(req, res, next) {
   res.render('index.html');
 });
 
-router.post('/gravar_ocorrencia', function(req, res) {
-  var nova_ocorrencia = {};
+router.get('/sys/*', function(req, res) {
+  res.send(req.baseUrl.substring(5, req.baseUrl.length));
+})
 
-  nova_ocorrencia.descricao = req.body;
+router.post('/gravar_ocorrencia', function(req, res) {
+  var nova_ocorrencia = req.body;
+  nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+
   Ocorrencias.create(nova_ocorrencia, function(erro) {
-    if (erro) res.status(500).send({erro: erro});
+    if (erro) {
+      res.send({
+        retorno: {
+          erro: true,
+          mensagem: erro
+        }
+      });
+    }
   });
 });
 
 router.get('/get_feed', function(req, res) {
   Ocorrencias.find(function(erro, ocorrencias) {
     if (erro) {
-      res.send({erro: erro});
+      res.send({
+        retorno: {
+          erro: true,
+          mensagem: erro
+        }
+      });
     } else {
-      res.send(ocorrencias);
+      res.send({
+        retorno: {
+          erro: false,
+          mensagem: erro,
+          objeto: ocorrencias
+        }
+      });
     }
   });
 });

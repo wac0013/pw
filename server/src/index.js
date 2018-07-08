@@ -4,8 +4,7 @@ var
   path          = require('path'),
   cookieParser  = require('cookie-parser'),
   logger        = require('morgan'),
-
-  indexRouter   = require('./routes/index');
+  history       = require('connect-history-api-fallback');
 
 var app = express();
 
@@ -30,17 +29,18 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
     quiet: true
   }));
   app.use(webpackHotMiddleware(compiler, {
-    reload: true,
-    noInfo: true
-  }));
+    log: false,
+    path: '/__what',
+    heartbeat: 2000
+  }))
 }
 
+app.use('/', require('./routes/index'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use('/', indexRouter);
+app.use(history());
 
 // captura erro 404 e para o manipulador de erro
 app.use(function(req, res, next) {

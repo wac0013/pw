@@ -24,9 +24,9 @@
               </button>
             </div>
             <div>
-              <router-link to="/cadastro">
+              <router-link to="/sys/cadastro">
                 <button id="cadastro" class="fluid ui secondary button" type="submit">Cadastrar</button>
-               </router-link> 
+               </router-link>
             </div>
         </sui-form>
       </sui-card-description>
@@ -59,7 +59,7 @@ export default {
       setTimeout(function () {
         $(self.$refs["form"].$el).removeClass('loading');
         if (self.usuario.login != '' && self.usuario.senha != '') {
-          self.$root.$router.push('/feed');
+          self.$root.$router.push('/sys/feed');
           self.$root.usuario.login = self.usuario.login;
           self.$root.usuario.senha = self.usuario.senha;
           self.$root.usuario.nome = 'Dead Pool';

@@ -30,17 +30,17 @@ export default new Router({
       component: dashboard,
       children: [
         {
-          path: '/atualizar-perfil',
+          path: '/sys/atualizar-perfil',
           name: 'atualizarPerfil',
           component: atualizarPerfil
         },
         {
-          path: '/feed',
+          path: '/sys/feed',
           name: 'feed',
           component: feed
         },
         {
-          path: '/ocorrencias',
+          path: '/sys/ocorrencias',
           name: 'Ocorrencias',
           component: ocorrencia
         },
@@ -50,7 +50,7 @@ export default new Router({
           component: casoDetalhado
         },
         {
-          path: '/cadastro',
+          path: '/sys/cadastro',
           name: 'cadastro',
           component: cadastro
         }
