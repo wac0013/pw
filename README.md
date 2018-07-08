@@ -19,20 +19,20 @@ npm install
 ```
 Após executar o comando acima, será criada o diretório __node_module__ com o código das dependências. Este diretório não é sincronizado com repositório git, pois está presente no arquivo .gitignore.
 
-#### Intalando gulp
-
-No projeto exite o arquivo gulpfile.js, este arquivo é responsável por automatizar o processo de desenvolvimento do aplicativo, utilizando a ferramenta gulp. Para maiores informações [Gulp](https://gulpjs.com/).
-
-```sh
-npm install gulp -g
-```
-
-#### Rodando o projeto
+#### Rodando o projeto em desenvolvimento
 
 Com as dependências devidamente instaladas, para executar o projeto em modo de desenvolvimento basta usar o seguinte comando:
 
 ```sh
-gulp dev
+npm run dev
 ```
-Ao executar o comando acima, o projeto será executado de forma a criar um servidor que fornecerá a página 
-web http://localhost:3000/webpack-dev-server/index.html. Nessa página web serão adicionados todos os arquivos js e css gerados pelo projeto.
+Ao executar o comando acima, o projeto será executado de forma a criar um servidor que fornecerá a página
+web http://localhost:3000/ Nessa página web serão adicionados todos os arquivos js e css gerados pelo projeto.
+
+#### Rodando o projeto
+
+Para executar o projeto em modo de produção basta usar o seguinte comando:
+
+```sh
+npm run pro
+```
