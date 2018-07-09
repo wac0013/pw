@@ -4,12 +4,12 @@ var
   path          = require('path'),
   cookieParser  = require('cookie-parser'),
   logger        = require('morgan'),
+  bodyParser    = require('body-parser'),
   history       = require('connect-history-api-fallback');
 
 var app = express();
 
 // configurando engines de visualização
-
 app.use(express.static(path.join(__dirname, '../../dist/public')));
 app.set('views', path.join(__dirname, '../../dist/public/view'));
 app.engine('html', require('ejs').renderFile);
@@ -35,12 +35,25 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
   }))
 }
 
-app.use('/', require('./routes/index'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({'extended': 'true'}));
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use('/', require('./routes/index'));
 app.use(history());
+
+/* GET home page. */
+app.get('/', function(req, res, next) {
+  res.render('index.html');
+});
+
+/* Qualquer outra página será redirecionado para index. */
+/* app.get('*', function(req, res, next) {
+  res.redirect('/');
+}); */
 
 // captura erro 404 e para o manipulador de erro
 app.use(function(req, res, next) {

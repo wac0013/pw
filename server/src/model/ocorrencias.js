@@ -6,9 +6,9 @@ var Ocorrencias = bd.define('Ocorrencias', {
   local: {type: bd.String,  limit: 255},
   descricao: {type: bd.String,  limit: 255},
   telefone: {type: bd.String,  limit: 255},
-  imagem: {type: bd.String, limit: 255},
+  imagem: {type: bd.String, limit: 255, default: '/img/sem-imagem.png', 'null': false},
   statusPerdido: {type: bd.String,  limit: 1},
-  recompensa: {type: bd.Integer,  limit: 255}
+  recompensa: {type: bd.Integer,  limit: 255, default: 0, 'null': false}
 }, {
   primaryKeys: ['idOcorrencia']
 });
