@@ -1,5 +1,5 @@
 <template lang="html" >
-  <sui-form @submit.prevent="gravar_ocorrencia" class="container" style="width: 40%;margin:0 auto;">
+  <sui-form @submit.prevent="gravar_ocorrencia" class="container" style="width: 40%;margin:0 auto;" ref="form">
     <sui-form-fields inline>
       <label>Tipo de ocorrencia</label>
       <sui-form-field required>
@@ -88,7 +88,6 @@
     </template>
 
     <sui-button fluid primary type="submit">Salvar ocorrência</sui-button>
-
   </sui-form>
 </template>
 
@@ -106,6 +105,12 @@
         enviarImagem: 0,
         ofereceRecompensa: 0,
         perdido: 'P',
+        loading: false,
+        retorno: {
+          erro: false,
+          visivel: false,
+          mensagem: ''
+        },
         ocorrencia: {
           descricao: '',
           categoria: '',
@@ -133,20 +138,34 @@
         if (e) e.preventDefault();
         var self = this;
         self.ocorrencia.statusPerdido = self.perdido;
-        self.ocorrencia.imagem = $('#imagem')[0].files[0];
+        self.ocorrencia.imagem = ($('#imagem') && self.enviarImagem == 1) ? $('#imagem')[0].files[0] : '';
+        $(self.$refs["form"].$el).addClass('loading');
 
-        axios.post('/api/gravar_ocorrencia', self.ocorrencia, {headers: {'Content-Type': 'multipart/form-data'}})
-          .then(resposne => {
-            var retorno = response.data.retorno;
+        $.post("api/gravar_ocorrencia", self.ocorrencia, function (data) {
+            var retorno = data.retorno;
             if (status != 200 || retorno.erro) {
-              alert('Ocorrecu algum erro: ' + erro);
+              self.$root.notificacao.error(retorno.mensagem, 'Ocorreu um erro!')
             } else {
               this.$root.router.push('/feed');
             }
+            $(self.$refs["form"].$el).removeClass('loading');
+            self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
+          });
+        /*$.post('/api/gravar_ocorrencia', self.ocorrencia, {headers: {'Content-Type': 'multipart/form-data'}})
+          .then(resposne => {
+            var retorno = response.data.retorno;
+            if (status != 200 || retorno.erro) {
+              self.$root.notificacao.error(retorno.mensagem, 'Ocorreu um erro!')
+            } else {
+              this.$root.router.push('/feed');
+            }
+            $(self.$refs["form"].$el).removeClass('loading');
+            self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
           })
           .catch(erro => {
-            alert('Ocorrecu algum erro: ' + erro);
-          });
+            self.$root.notificacao.error(erro, 'Ocorreu um erro!');
+            $(self.$refs["form"].$el).removeClass('loading');
+          }); */
       }
     }
   };

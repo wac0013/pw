@@ -1,6 +1,12 @@
 <template>
 <sui-grid>
   <sui-card-group>
+    <sui-message v-if="ocorrencias.length == 0" floating>
+      <sui-message-header>Nenhuma ocorrência</sui-message-header>
+      <p>
+        Não foram encontradas ocorrências. Por favor cadastre uma nova ocorrência <router-link to="/sys/ocorrencias">aqui</router-link>
+      </p>
+    </sui-message>
     <sui-card v-for="ocorrencia in ocorrencias" :key="ocorrencia.idOcorrencia" @click="detalhar(ocorrencia)">
       <sui-image src="/img/sem-imagem.png" v-if="ocorrencia.imagem == undefined" @click="detalhar(ocorrencia)"/>
       <sui-image :src="ocorrencia.imagem" v-else  @click="detalhar(ocorrencia)"/>

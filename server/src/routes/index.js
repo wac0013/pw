@@ -5,8 +5,19 @@ var fs            = require('fs');
 var path          = require('path');
 
 router.post('/api/gravar_ocorrencia', function(req, res) {
-  var nova_ocorrencia = req.body;
-  nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+  try {
+    var nova_ocorrencia = req.body;
+    nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+  } catch (error) {
+    res.send({
+      retorno: {
+        erro: false,
+        mensagem: error,
+        objeto: {}
+      }
+    });
+    return;
+  }
   /*
   var
     old_path = files.file.path,
