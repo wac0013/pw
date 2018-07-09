@@ -24,14 +24,14 @@
       <input placeholder="Digite aqui..." v-model="ocorrencia.categoria">
     </sui-form-field>
     <sui-form-field>
-      <label>Local onde foi perdido/encontrado</label>
+      <label>Local onde foi <span v-if="perdido=='P'">perdido</span><span v-else>encontrado</span></label>
       <input placeholder="Digite aqui..." v-model="ocorrencia.local">
     </sui-form-field>
     <sui-form-field>
       <label>Descrição</label>
       <input placeholder="Digite aqui..." v-model="ocorrencia.descricao">
     </sui-form-field>
-    <sui-form-fields inline v-if="perdido==1">
+    <sui-form-fields inline v-if="perdido=='P'">
       <label>Oferece recompensa?</label>
       <sui-form-field>
         <sui-checkbox
@@ -83,7 +83,7 @@
 
     <template v-if="enviarImagem==1 && perdido=='P'">
       <sui-form-field>
-        <input type="file" >
+        <input id="imagem" type="file" accept="image/*" @change.stop.prevent="validar_arquivo_imagem">
       </sui-form-field>
     </template>
 
@@ -118,12 +118,24 @@
       }
     },
     methods: {
+      validar_arquivo_imagem: function(e) {
+        if (e) e.preventDefault();
+        var fileName = $('#imagem').val();
+        var idxDot = fileName.lastIndexOf('.') + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+
+        if (extFile != 'jpg' && extFile != 'jpeg' && extFile != 'png'){
+          alert('Permitido apenas arquivos de imagens');
+          $('#imagem').val('');
+        }
+      },
       gravar_ocorrencia: function(e){
         if (e) e.preventDefault();
         var self = this;
         self.ocorrencia.statusPerdido = self.perdido;
+        self.ocorrencia.imagem = $('#imagem')[0].files[0];
 
-        axios.post('/gravar_ocorrencia', self.ocorrencia)
+        axios.post('/api/gravar_ocorrencia', self.ocorrencia, {headers: {'Content-Type': 'multipart/form-data'}})
           .then(resposne => {
             var retorno = response.data.retorno;
             if (status != 200 || retorno.erro) {
