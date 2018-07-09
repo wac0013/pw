@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS `pw`.`ocorrencias` (
   `Recompensa` FLOAT NOT NULL DEFAULT 0,
   `Telefone` VARCHAR(14) NULL,
   `StatusPerdido` ENUM('P', 'E') NOT NULL,
-  `Imagens` BLOB NULL,
+  `Imagens` VARCHAR(255),
   PRIMARY KEY (`IdOcorrencia`))
 ENGINE = InnoDB
