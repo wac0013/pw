@@ -32,7 +32,8 @@ new Vue({
     return {
       ocorrencias: ocorrencias,
       usuario: {},
-      notificacao: toastr
+      notificacao: toastr,
+      ocorrencia_edicao: undefined
     }
   },
   router,

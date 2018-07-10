@@ -141,7 +141,11 @@
         self.ocorrencia.imagem = ($('#imagem') && self.enviarImagem == 1) ? $('#imagem')[0].files[0] : '';
         $(self.$refs["form"].$el).addClass('loading');
 
-        axios.post('/api/gravar_ocorrencia', self.ocorrencia)
+        if (self.$root.ocorrencia_edicao) {
+          self.ocorrencia.idOcorrencia = self.$root.ocorrencia_edicao;
+          self.$root.ocorrencia_edicao = undefined;
+
+          axios.post('/api/gravar_ocorrencia', self.ocorrencia)
           .then(response => {
             var retorno = response.data.retorno;
             $(self.$refs["form"].$el).removeClass('loading');
@@ -156,6 +160,23 @@
             $(self.$refs["form"].$el).removeClass('loading');
             self.$root.notificacao.error(erro, 'Ops, Ocorreu um erro!');
           });
+        } else {
+          axios.post('/api/gravar_ocorrencia', self.ocorrencia)
+            .then(response => {
+              var retorno = response.data.retorno;
+              $(self.$refs["form"].$el).removeClass('loading');
+              if (retorno.erro) {
+                self.$root.notificacao.error(retorno.mensagem, 'Erro ao gravar!');
+              } else {
+                self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
+                this.$root.$router.push('feed');
+              }
+            })
+            .catch(erro => {
+              $(self.$refs["form"].$el).removeClass('loading');
+              self.$root.notificacao.error(erro, 'Ops, Ocorreu um erro!');
+            });
+        }
       }
     }
   };
