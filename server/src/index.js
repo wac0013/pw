@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
 
   app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    logLevel: 'info',
+    logLevel: 'error',
     quiet: true
   }));
   app.use(webpackHotMiddleware(compiler, {
@@ -46,7 +46,7 @@ app.use('/', require('./routes/index'));
 app.use(history());
 
 /* GET home page. */
-app.get('/', function(req, res, next) {
+app.get('/', function(req, res) {
   res.render('index.html');
 });
 
