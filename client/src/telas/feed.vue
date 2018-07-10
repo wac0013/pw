@@ -32,9 +32,9 @@
     </sui-modal-content>
     <sui-modal-actions>
       <div is="sui-button-group" floated="left">
-        <sui-button icon="edit" color="blue"/>
+        <sui-button icon="edit" color="blue" @click.prevent="editar(ocorrencia_selecionada)"/>
         <sui-button-or/>
-        <sui-button icon="trash" negative/>
+        <sui-button icon="trash" negative @click.prevent="editar(ocorrencia_selecionada)"/>
       </div>
     </sui-modal-actions>
   </sui-modal>
@@ -43,7 +43,7 @@
     <sui-modal-actions>
       <div is="sui-button-group" floated="left">
         <sui-button icon="edit" id="cancelarBtn" @click.prevent="modal_excluir">Cancelar</sui-button>
-        <sui-button icon="trash" negative id="excluirBtn" @click.prevent="excluir()">Excluir</sui-button>
+        <sui-button icon="trash" negative id="excluirBtn" @click.prevent="excluir(ocorrencia_selecionada)">Excluir</sui-button>
       </div>
     </sui-modal-actions>
   </sui-modal>
@@ -76,7 +76,8 @@ export default {
       show_ocorrencia: {},
       show_modal_ocorrencia: false,
       show_modal_excluir: false,
-      processando: false
+      processando: false,
+      ocorrencia_selecionada: {}
     }
   },
   mounted(){
@@ -113,9 +114,11 @@ export default {
     detalhar(ocorrencia){
       this.show_modal_ocorrencia = !this.show_modal_ocorrencia;
       this.show_ocorrencia = ocorrencia;
+      this.$root.ocorrencia_edicao = (this.show_modal_ocorrencia) ? ocorrencia : undefined;
     },
-    editar(){
-      this.$root.router.push('sys/ocorr');
+    editar(ocorrencia){
+      this.$root.router.push('sys/Ocorrencias');
+      this.$root.ocorrencia_edicao = ocorrencia;
     },
     modal_excluir(){
       this.modal_excluir = !this.modal_excluir;
