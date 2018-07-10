@@ -135,17 +135,18 @@
         self.ocorrencia.statusPerdido = self.perdido;
         self.ocorrencia.imagem = $('#imagem')[0].files[0];
 
-        axios.post('/api/gravar_ocorrencia', self.ocorrencia, {headers: {'Content-Type': 'multipart/form-data'}})
+        axios.post('/api/gravar_ocorrencia', self.ocorrencia)
           .then(resposne => {
             var retorno = response.data.retorno;
             if (status != 200 || retorno.erro) {
-              alert('Ocorrecu algum erro: ' + erro);
+              self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
             } else {
-              this.$root.router.push('/feed');
+              self.$root.notificacao.success(resposta.mensagem, 'Não foi possível excluir!');
+              this.$root.router.push('sys/feed');
             }
           })
           .catch(erro => {
-            alert('Ocorrecu algum erro: ' + erro);
+            self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
           });
       }
     }
