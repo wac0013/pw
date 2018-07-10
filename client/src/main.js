@@ -2,7 +2,7 @@ import Vue from 'vue'
 import router from './rotas'
 import semantic from 'semantic-ui-vue'
 import login from '@/telas/login'
-import toastr from 'toastr';
+import toastr from 'toastr'
 
 toastr.options = {
   'closeButton': true,

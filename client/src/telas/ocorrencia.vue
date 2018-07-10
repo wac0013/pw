@@ -141,31 +141,21 @@
         self.ocorrencia.imagem = ($('#imagem') && self.enviarImagem == 1) ? $('#imagem')[0].files[0] : '';
         $(self.$refs["form"].$el).addClass('loading');
 
-        $.post("api/gravar_ocorrencia", self.ocorrencia, function (data) {
-            var retorno = data.retorno;
-            if (status != 200 || retorno.erro) {
-              self.$root.notificacao.error(retorno.mensagem, 'Ocorreu um erro!')
-            } else {
-              this.$root.router.push('/feed');
-            }
-            $(self.$refs["form"].$el).removeClass('loading');
-            self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
-          });
-        /*$.post('/api/gravar_ocorrencia', self.ocorrencia, {headers: {'Content-Type': 'multipart/form-data'}})
+        axios.post('/api/gravar_ocorrencia', self.ocorrencia)
           .then(resposne => {
             var retorno = response.data.retorno;
             if (status != 200 || retorno.erro) {
-              self.$root.notificacao.error(retorno.mensagem, 'Ocorreu um erro!')
+              self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
             } else {
-              this.$root.router.push('/feed');
+              self.$root.notificacao.success(resposta.mensagem, 'Não foi possível excluir!');
+              this.$root.router.push('sys/feed');
             }
             $(self.$refs["form"].$el).removeClass('loading');
             self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
           })
           .catch(erro => {
-            self.$root.notificacao.error(erro, 'Ocorreu um erro!');
-            $(self.$refs["form"].$el).removeClass('loading');
-          }); */
+            self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
+          });
       }
     }
   };

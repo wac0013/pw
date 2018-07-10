@@ -25,7 +25,6 @@ if (process.env.NODE_ENV === 'dev' || 'development') {
 
   app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    logLevel: 'error',
     quiet: true
   }));
   app.use(webpackHotMiddleware(compiler, {

@@ -9,15 +9,14 @@ router.post('/api/gravar_ocorrencia', function(req, res) {
     var nova_ocorrencia = req.body;
     nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
   } catch (error) {
-    res.send({
+    res.end({
       retorno: {
-        erro: false,
-        mensagem: error,
-        objeto: {}
+        erro: true,
+        mensagem: error
       }
     });
-    return;
   }
+
   /*
   var
     old_path = files.file.path,
@@ -93,5 +92,28 @@ router.get('/api/get_feed', function(req, res) {
     }
   });
 });
+
+router.post('/api/excluir', function(req, res) {
+  var id = req.body.id || 0;
+  Ocorrencias.remove({where: {idOcorrencia: id}}, function(erro) {
+    if (erro) {
+      res.end({
+        retorno: {
+          erro: true,
+          mensagem: erro,
+          objeto: {}
+        }
+      });
+    } else {
+      res.end({
+        retorno: {
+          erro: false,
+          mensagem: 'Ocorrência excluída',
+          objeto: {}
+        }
+      })
+    }
+  })
+})
 
 module.exports = router;
