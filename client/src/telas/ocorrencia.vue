@@ -19,15 +19,15 @@
           />
         </sui-form-field>
     </sui-form-fields>
-    <sui-form-field>
+    <sui-form-field required>
       <label>Categoria</label>
       <input placeholder="Digite aqui..." v-model="ocorrencia.categoria">
     </sui-form-field>
-    <sui-form-field>
+    <sui-form-field required>
       <label>Local onde foi <span v-if="perdido=='P'">perdido</span><span v-else>encontrado</span></label>
       <input placeholder="Digite aqui..." v-model="ocorrencia.local">
     </sui-form-field>
-    <sui-form-field>
+    <sui-form-field required>
       <label>Descrição</label>
       <input placeholder="Digite aqui..." v-model="ocorrencia.descricao">
     </sui-form-field>
@@ -142,19 +142,19 @@
         $(self.$refs["form"].$el).addClass('loading');
 
         axios.post('/api/gravar_ocorrencia', self.ocorrencia)
-          .then(resposne => {
+          .then(response => {
             var retorno = response.data.retorno;
-            if (status != 200 || retorno.erro) {
-              self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
-            } else {
-              self.$root.notificacao.success(resposta.mensagem, 'Não foi possível excluir!');
-              this.$root.router.push('sys/feed');
-            }
             $(self.$refs["form"].$el).removeClass('loading');
-            self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
+            if (retorno.erro) {
+              self.$root.notificacao.error(retorno.mensagem, 'Erro ao gravar!');
+            } else {
+              self.$root.notificacao.success('Ocorrência salva com sucesso!', 'Salvo');
+              this.$root.$router.push('feed');
+            }
           })
           .catch(erro => {
-            self.$root.notificacao.error(resposta.mensagem, 'Não foi possível excluir!');
+            $(self.$refs["form"].$el).removeClass('loading');
+            self.$root.notificacao.error(erro, 'Ops, Ocorreu um erro!');
           });
       }
     }
