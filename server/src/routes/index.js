@@ -5,8 +5,19 @@ var fs            = require('fs');
 var path          = require('path');
 
 router.post('/api/gravar_ocorrencia', function(req, res) {
-  var nova_ocorrencia = req.body;
-  nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+  try {
+    var nova_ocorrencia = req.body;
+    nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+  } catch (error) {
+    res.send({
+      retorno: {
+        erro: true,
+        mensagem: error
+      }
+    });
+    res.end();
+  }
+
   /*
   var
     old_path = files.file.path,
@@ -55,7 +66,14 @@ router.post('/api/gravar_ocorrencia', function(req, res) {
       res.send({
         retorno: {
           erro: true,
-          mensagem: erro
+          mensagem: erro.message
+        }
+      });
+    } else {
+      res.send({
+        retorno: {
+          erro: false,
+          mensagem: 'Salvo com sucesso'
         }
       });
     }
@@ -83,4 +101,63 @@ router.get('/api/get_feed', function(req, res) {
   });
 });
 
+router.post('/api/excluir', function(req, res) {
+  var id = req.body.id || 0;
+  Ocorrencias.remove({where: {idOcorrencia: id}}, function(erro) {
+    if (erro) {
+      res.send({
+        retorno: {
+          erro: true,
+          mensagem: erro,
+          objeto: {}
+        }
+      });
+    } else {
+      res.send({
+        retorno: {
+          erro: false,
+          mensagem: 'Ocorrência excluída',
+          objeto: {}
+        }
+      });
+    }
+  })
+});
+
+router.post('/api/atualizar', function(req, res) {
+  try {
+    var nova_ocorrencia = req.body;
+    var id = nova_ocorrencia.idOcorrencia;
+    if (id < 1) {
+      throw new Error('Ocorrencia não encontrada com código ' + id);
+    }
+    nova_ocorrencia.categoria = nova_ocorrencia.categoria.substring(0, 3).toUpperCase();
+  } catch (error) {
+    res.send({
+      retorno: {
+        erro: true,
+        mensagem: error
+      }
+    });
+  }
+  Ocorrencias.update({where: {idOcorrencia: id}}, function(erro) {
+    if (erro) {
+      res.send({
+        retorno: {
+          erro: true,
+          mensagem: erro,
+          objeto: {}
+        }
+      });
+    } else {
+      res.send({
+        retorno: {
+          erro: false,
+          mensagem: 'Ocorrência excluída',
+          objeto: {}
+        }
+      });
+    }
+  })
+});
 module.exports = router;
